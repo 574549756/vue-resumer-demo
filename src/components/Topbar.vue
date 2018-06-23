@@ -14,11 +14,15 @@
 
 
 <style lang="scss">
+$designWidth: 1920;
+@function px($px) {
+  @return $px/$designWidth * 10 + rem;
+}
 #topbar {
   display: flex;
   justify-content: space-between;
-  padding: 16px;
+  padding: px(16);
   align-items: center;
-  font-size: 20px;
+  font-size: px(20);
 }
 </style>

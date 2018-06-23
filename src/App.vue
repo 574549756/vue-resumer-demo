@@ -13,6 +13,10 @@ import Topbar from "./components/Topbar";
 import Preview from "./components/Preview";
 import Editor from "./components/Editor";
 
+// 自适应
+let pageWidth = window.innerWidth;
+styleTag.innerHTML = "html{font-size:" + pageWidth / 10 + "px;}";
+
 export default {
   components: {
     Topbar,
@@ -23,11 +27,18 @@ export default {
 </script>
 
 <style lang="scss">
+$designWidth: 1920;
+@function px($px) {
+  @return $px/$designWidth * 10 + rem;
+}
 html,
 body,
 #app {
   height: 100%;
   overflow: hidden;
+}
+body {
+  font-size: 16px;
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -40,14 +51,7 @@ body,
 .topbar {
   position: relative;
   z-index: 1;
-  box-shadow: 0 0 3px hsla(0, 0, 0, 0.5);
-}
-.icon {
-  width: 2.4em;
-  height: 2.4em;
-  vertical-align: -0.15em;
-  overflow: hidden;
-  margin: 16px 10px;
+  box-shadow: 0 0 px(3) hsla(0, 0, 0, 0.5);
 }
 main {
   display: flex;
@@ -55,17 +59,17 @@ main {
   background: #ddd;
   > .editor {
     background: white;
-    width: 40em;
-    margin: 16px 8px 16px 16px;
-    box-shadow: 0 0 3px hsla(0, 0, 0, 0.5);
-    border-radius: 4px;
+    width: px(640);
+    margin: px(16) px(8) px(16) px(16);
+    box-shadow: 0 0 px(3) hsla(0, 0, 0, 0.5);
+    border-radius: px(4);
   }
   > .preview {
     background: white;
     flex: 1;
-    margin: 16px 16px 16px 8px;
-    box-shadow: 0 0 3px hsla(0, 0, 0, 0.5);
-    border-radius: 4px;
+    margin: px(16) px(16) px(16) px(8);
+    box-shadow: 0 0 px(3) hsla(0, 0, 0, 0.5);
+    border-radius: px(4);
   }
 }
 </style>

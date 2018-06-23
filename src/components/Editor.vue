@@ -40,19 +40,30 @@
 
 
 <style lang="scss">
+$designWidth: 1920;
+@function px($px) {
+  @return $px/$designWidth * 10 + rem;
+}
 #editor {
-  min-height: 100px;
+  min-height: px(100);
   display: flex;
   overflow: hidden;
   .sideNav {
     background: #000;
-    width: 80px;
+    width: px(100);
     > ol {
+      .icon {
+        width: px(36);
+        height: px(36);
+        vertical-align: -0.15em;
+        overflow: hidden;
+        margin: px(16) px(10);
+      }
       :nth-child(1) {
         .icon {
-          width: 3em;
-          height: 3em;
-          margin: 12px 8px 10px 8px;
+          width: px(40);
+          height: px(40);
+          margin: px(12) px(8) px(10) px(8);
         }
       }
       li {
