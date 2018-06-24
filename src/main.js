@@ -12,15 +12,6 @@ Vue.use(ElementUI);
 
 Vue.config.productionTip = false
 
-Vue.component('Tassadar',{
-  template: '<p>I am Tassadar</p>',
-  data(){
-    return {
-      name: 'Tassadar'
-    }
-  }
-})
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
