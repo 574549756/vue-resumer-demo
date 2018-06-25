@@ -14,7 +14,7 @@
 				<profileEditor v-bind:profile="profile"/>
 			</li>
 			<li v-bind:class="{active: currentTab === 1}">
-				<h2>学习经历</h2>
+				<studyHistoryEditor v-bind:Items="studyHistory"/>
 			</li>
 			<li v-bind:class="{active: currentTab === 2}">
 				<jobExperienceEditor v-bind:jobExperience = "jobExperience"/>
@@ -35,8 +35,10 @@
 <script>
 import profileEditor from './profileEditor.vue'
 import jobExperienceEditor from './jobExperienceEditor.vue'
+import studyHistoryEditor from './studyHistoryEditor.vue'
+
 export default {
-  components: { profileEditor, jobExperienceEditor },
+  components: { profileEditor, jobExperienceEditor, studyHistoryEditor },
   data() {
     return {
       currentTab: 0,
@@ -58,7 +60,8 @@ export default {
           company: '',
           content: ''
         }
-      ]
+      ],
+      studyHistory: [{ school: '', duration: '', degree: '' }]
     }
   },
   methods: {}

@@ -6,8 +6,8 @@
 
 
 <style>
-    #preview{
-        min-height: 100px;
-        overflow: hidden;
-    }
+#preview {
+  min-height: 100px;
+  overflow: hidden;
+}
 </style>
