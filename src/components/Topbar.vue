@@ -6,11 +6,22 @@
         <div class="actions">
             <el-row>
                 <el-button>注册</el-button>
-                <el-button type="primary">登录</el-button>
+                <el-button>登录</el-button>
+                <el-button v-on:click="preview">预览</el-button>
             </el-row>
         </div>
     </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    preview() {
+      this.$emit('preview')
+    }
+  }
+}
+</script>
 
 
 <style lang="scss">
