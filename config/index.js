@@ -6,9 +6,8 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
     // Paths
-    assetsSubDirectory: 'static',
+    assetsSubDirectory: '/vue-resumer-demo/dist/static',
     assetsPublicPath: '/',
     proxyTable: {},
 
@@ -20,7 +19,6 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
     /**
      * Source Maps
      */
