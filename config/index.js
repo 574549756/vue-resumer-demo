@@ -7,7 +7,7 @@ const path = require('path')
 module.exports = {
   dev: {
     // Paths
-    assetsSubDirectory: 'vue-resumer-demo/dist/static',
+    assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {},
 
@@ -40,7 +40,7 @@ module.exports = {
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'static',
+    assetsSubDirectory: 'vue-resumer-demo/dist/static',
     assetsPublicPath: '/',
 
     /**
