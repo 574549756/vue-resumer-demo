@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import coverImg1 from '../assets/img/coverImg1.jpg'
+
 export default {
   data() {
     var checkEmail = (rule, value, callback) => {
@@ -123,7 +125,9 @@ $designWidth: 1920;
     .coverImg {
       width: px(650);
       height: px(700);
-      background: rgba($color: #383838, $alpha: 1);
+      background-image: url(../assets/img/coverImg1.jpg);
+      background-position: center center;
+      background-size: cover;
     }
     .dialogBoard {
       width: px(500);
@@ -223,6 +227,9 @@ $designWidth: 1920;
               padding: px(24) px(6) px(0) px(0);
             }
             .el-input__inner {
+              :focus {
+                border-left-color: #7d3d3d;
+              }
               border-radius: 0;
               padding: px(24) px(8) px(2) px(18);
               height: px(63);
