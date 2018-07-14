@@ -1,15 +1,22 @@
 <template>
-	<div id="app" v-bind:class="{previewMode:previewMode}">
-		<Topbar class="topbar" v-on:preview="preview"/>
-		<main>
-			<Editor v-bind:resume='resume' class="editor" />
-			<Preview v-bind:resume='resume' class="preview" />
-		</main>
-    <el-button id="exitPreview" v-on:click="exitPreview">退出预览</el-button>
-	</div>
+  <div id="app"
+       v-bind:class="{previewMode:previewMode}">
+       <SignUp class="signInAndSignUp"/>
+    <Topbar class="topbar"
+            v-on:preview="preview" />
+    <main>
+      <Editor v-bind:resume='resume'
+              class="editor" />
+      <Preview v-bind:resume='resume'
+               class="preview" />
+    </main>
+    <el-button id="exitPreview"
+               v-on:click="exitPreview">退出预览</el-button>
+  </div>
 </template>
 
 <script>
+import SignUp from './components/SignUp'
 import Topbar from './components/Topbar'
 import Preview from './components/Preview'
 import Editor from './components/Editor'
@@ -28,7 +35,7 @@ export default {
         studyHistory: [{ school: '', duration: '', degree: '' }],
         projects: [{ name: '', content: '' }],
         awards: [{ time: '', award: '' }],
-        contacts: { qq: '', wechat: '', phone: '', email: '' }
+        contacts: [{ qq: '', wechat: '', phone: '', email: '' }]
       }
     }
   },
@@ -43,7 +50,8 @@ export default {
   components: {
     Topbar,
     Preview,
-    Editor
+    Editor,
+    SignUp
   }
 }
 </script>
@@ -60,7 +68,7 @@ body,
   overflow: hidden;
 }
 body {
-  font-size: 16px;
+  font-size: px(16);
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -107,13 +115,13 @@ main {
   #preview {
     max-width: px(800);
     margin: 0 auto;
-    margin: 32px auto;
+    margin: px(32) auto;
   }
   #exitPreview {
     display: inline-block;
     position: fixed;
-    right: 16px;
-    bottom: 16px;
+    right: px(16);
+    bottom: px(16);
   }
 }
 </style>

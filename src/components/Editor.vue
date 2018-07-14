@@ -27,20 +27,7 @@
       </li>
 
       <li v-bind:class="{active: currentTab === 5}">
-        <h2>联系方式</h2>
-        <el-form>
-          <el-form-item label="QQ">
-            <el-input v-model="resume.contacts.qq"></el-input>
-          </el-form-item>
-          <el-form-item label="微信">
-            <el-input v-model="resume.contacts.wechat"></el-input>
-          </el-form-item>
-          <el-form-item label="邮箱">
-            <el-input v-model="resume.contacts.email"></el-input>
-          </el-form-item>
-          <el-form-item label="手机">
-            <el-input v-model="resume.contacts.phone"></el-input>
-          </el-form-item>
+        <ArrayEditor v-bind:items="resume.contacts" v-bind:labels="{qq: 'QQ', wechat: '微信', phone:'手机', email: 'Email'}" title="联系方式" />        
         </el-form>
       </li>
     </ol>
@@ -85,12 +72,14 @@ export default {
         }
       ],
       awards: [{ time: '', award: '' }],
-      contacts: {
-        qq: '',
-        wechat: '',
-        phone: '',
-        email: ''
-      }
+      contacts: [
+        {
+          qq: '',
+          wechat: '',
+          phone: '',
+          email: ''
+        }
+      ]
     }
   },
   methods: {}
@@ -108,7 +97,7 @@ $designWidth: 1920;
   min-height: px(100);
   display: flex;
   overflow: hidden;
-  width: px(700);
+  width: px(600);
   .sideNav {
     background: #000;
     width: px(100);
@@ -131,20 +120,25 @@ $designWidth: 1920;
         text-align: center;
         &.active {
           background: white;
+          transition: all 0.5s;
           > .icon {
             fill: black;
+            transition: all 0.5s;
           }
         }
       }
     }
   }
   > .panes {
+    width: px(400);
     flex: 1;
     .active {
       h2 {
         margin: px(20) px(0);
       }
       .el-form {
+        width: px(400);
+        transition: all 0.5s;
         position: relative;
         .el-icon-circle-plus {
           transform: scale(1.2);

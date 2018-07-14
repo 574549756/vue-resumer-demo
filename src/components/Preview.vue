@@ -3,6 +3,14 @@
         <h1>{{resume.profile.name || '请填写姓名'}}</h1>
         <p>{{resume.profile.city || '请填写城市'}} | {{resume.profile.birth || '请填写出生日期'}}</p>
         <hr>
+        <section v-if="filter(resume.studyHistory).length > 0">
+          <h2>学习经历</h2>
+          <ul>
+            <li v-for='study in filter(resume.studyHistory)'>
+              {{study.duration}} | {{study.school}} | {{study.degree}}
+            </li>
+          </ul>
+        </section>
         <section v-if="filter(resume.projects).length > 0">
           <h2>项目</h2>
           <ul>
@@ -16,6 +24,25 @@
           <ul>
             <li v-for='job in filter(resume.jobExperience)'>
               {{job.duration}} | {{job.company}} | {{job.content}}
+            </li>
+          </ul>
+        </section>
+        <section v-if="filter(resume.awards).length > 0">
+          <h2>获奖信息</h2>
+          <ul>
+            <li v-for='award in filter(resume.awards)'>
+              {{award.time}} | {{award.award}}
+            </li>
+          </ul>
+        </section>
+        <section v-if="filter(resume.contacts).length > 0">
+          <h2>联系方式</h2>
+          <ul>
+            <li v-for='contact in filter(resume.contacts)'>
+              <p v-html="'QQ:'+contact.qq"></p>
+              <p v-html="'微信:'+contact.wechat"></p>
+              <p v-html="'手机号码:'+contact.phone"></p>
+              <p v-html="'Email:'+contact.email"></p>
             </li>
           </ul>
         </section>

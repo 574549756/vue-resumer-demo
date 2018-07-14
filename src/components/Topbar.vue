@@ -35,5 +35,6 @@ $designWidth: 1920;
   padding: px(16);
   align-items: center;
   font-size: px(20);
+  background: #1e1e1e;
 }
 </style>
