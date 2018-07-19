@@ -5,8 +5,8 @@
         </div>
         <div class="actions">
             <el-row>
-                <el-button v-if="!currentUser">注册</el-button>
-                <el-button v-if="!currentUser">登录</el-button>
+                <el-button v-if="currentUser">注册</el-button>
+                <el-button v-if="currentUser">登录</el-button>
                 <el-button v-on:click="logout" v-if="!currentUser">登出</el-button>
                 <el-button v-on:click="preview">预览</el-button>
             </el-row>

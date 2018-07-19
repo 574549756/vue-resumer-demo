@@ -64,8 +64,7 @@ export default {
       AV.User.logIn(this.ruleForm2.email, this.ruleForm2.pass).then(
         loginedUser => {
           console.log('发送switchCurrent指令')
-          currentUser = getCurrentUser()
-
+          this.$emit('switchCurrent')
           console.log('发送完毕')
         },
         function(error) {

@@ -84,7 +84,7 @@ export default {
       user.setPassword(this.ruleForm2.checkPass)
       user.signUp().then(
         loginedUser => {
-          this.$emit('currentUserTrigger')
+          this.$emit('switchCurrent')
         },
         function(error) {
           alert('注册失败')

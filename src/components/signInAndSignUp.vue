@@ -5,8 +5,8 @@
                 <div class="switchSignIn" v-bind:class="{signInMode:signInMode}" v-on:click="toSignIn">登录</div>
                 <div class="switchSignUp" v-bind:class="{signUpMode:signUpMode}" v-on:click="toSignUp">注册</div>
             </div>
-            <SignUp v-bind:class="{signUpMode:!signUpMode}"/>
-            <SignIn v-bind:class="{signInMode:!signInMode}"/>
+            <SignUp v-bind:class="{signUpMode:!signUpMode}" @switchCurrent="switchCurrent"/>
+            <SignIn v-bind:class="{signInMode:!signInMode}" @switchCurrent="switchCurrent"/>
             <div class="coverImg">
                 <div class="inner">
                     <div class="logomask"></div>
@@ -29,7 +29,7 @@ let pageWidth = window.innerWidth
 styleTag.innerHTML = 'html{font-size:' + pageWidth / 10 + 'px;}'
 
 export default {
-  props: ['currentUser', 'ruleForm2'],
+  props: ['currentUser'],
   data() {
     return {
       signUpMode: false,
@@ -44,6 +44,9 @@ export default {
     toSignIn() {
       this.signUpMode = false
       this.signInMode = true
+    },
+    switchCurrent() {
+      this.$emit('switchCurrent')
     }
   },
   components: {

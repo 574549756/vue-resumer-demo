@@ -1,6 +1,6 @@
 <template>
   <div id="app" v-bind:class="{previewMode:previewMode}">
-    <signInAndSignUp class="signInAndSignUp" v-if="currentUser===null" v-on:click="changeCurrent"/>
+    <signInAndSignUp class="signInAndSignUp" v-if="currentUser===null" v-on:click="changeCurrent" @switchCurrent="changeCurrent"/>
     <Topbar class="topbar" v-on:preview="preview" />
     <main>
       <Editor v-bind:resume='resume' class="editor" />
@@ -65,7 +65,7 @@ export default {
       }
     },
     changeCurrent: function() {
-      currentUser = getCurrentUser()
+      this.currentUser = this.getCurrentUser()
     }
   },
   components: {
