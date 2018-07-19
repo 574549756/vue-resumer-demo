@@ -5,8 +5,9 @@
         </div>
         <div class="actions">
             <el-row>
-                <el-button>注册</el-button>
-                <el-button>登录</el-button>
+                <el-button v-if="!currentUser">注册</el-button>
+                <el-button v-if="!currentUser">登录</el-button>
+                <el-button v-on:click="logout" v-if="!currentUser">登出</el-button>
                 <el-button v-on:click="preview">预览</el-button>
             </el-row>
         </div>
@@ -15,9 +16,19 @@
 
 <script>
 export default {
+  data() {
+    return {
+      currentUser: null
+    }
+  },
   methods: {
     preview() {
       this.$emit('preview')
+    },
+    logout: function() {
+      AV.User.logOut()
+      this.currentUser = null
+      window.location.reload()
     }
   }
 }

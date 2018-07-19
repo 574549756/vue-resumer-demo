@@ -5,17 +5,29 @@ import App from './App'
 import 'normalize.css'
 import './assets/reset.scss'
 
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import { METHODS } from 'http'
 
-Vue.use(ElementUI);
+Vue.use(ElementUI)
 
 Vue.config.productionTip = false
+
+var { Query, User } = AV
+var APP_ID = 'W7NHdPc1bCQFxkcowluIBfh0-gzGzoHsz'
+var APP_KEY = 'iQkUHnRBIL7fkX9F900aYfJz'
+
+AV.init({
+  appId: APP_ID,
+  appKey: APP_KEY
+})
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  data: {
+    actionType: 'signUp'
+  },
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
 })
-

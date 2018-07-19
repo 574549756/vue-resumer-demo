@@ -1,22 +1,17 @@
 <template>
-  <div id="app"
-       v-bind:class="{previewMode:previewMode}">
-       <SignUp class="signInAndSignUp"/>
-    <Topbar class="topbar"
-            v-on:preview="preview" />
+  <div id="app" v-bind:class="{previewMode:previewMode}">
+    <signInAndSignUp class="signInAndSignUp" v-if="currentUser===null" v-on:click="changeCurrent"/>
+    <Topbar class="topbar" v-on:preview="preview" />
     <main>
-      <Editor v-bind:resume='resume'
-              class="editor" />
-      <Preview v-bind:resume='resume'
-               class="preview" />
+      <Editor v-bind:resume='resume' class="editor" />
+      <Preview v-bind:resume='resume' class="preview" />
     </main>
-    <el-button id="exitPreview"
-               v-on:click="exitPreview">退出预览</el-button>
+    <el-button id="exitPreview" v-on:click="exitPreview">退出预览</el-button>
   </div>
 </template>
 
 <script>
-import SignUp from './components/SignUp'
+import signInAndSignUp from './components/signInAndSignUp'
 import Topbar from './components/Topbar'
 import Preview from './components/Preview'
 import Editor from './components/Editor'
@@ -28,6 +23,7 @@ styleTag.innerHTML = 'html{font-size:' + pageWidth / 10 + 'px;}'
 export default {
   data() {
     return {
+      currentUser: null,
       previewMode: false,
       resume: {
         profile: { name: '', city: '', birth: '' },
@@ -39,19 +35,44 @@ export default {
       }
     }
   },
+  created: function() {
+    console.log('最开始执行了')
+    this.currentUser = this.getCurrentUser()
+  },
   methods: {
     preview() {
       this.previewMode = true
     },
     exitPreview() {
       this.previewMode = false
+    },
+    getCurrentUser: function() {
+      console.log('调用获取用户函数')
+      let current = AV.User.current()
+      console.log('赋值')
+      if (current) {
+        let {
+          id,
+          createdAt,
+          attributes: { username }
+        } = current
+        console.log(current)
+        console.log('结束')
+        return { id, username, createdAt }
+      } else {
+        console.log(current)
+        return null
+      }
+    },
+    changeCurrent: function() {
+      currentUser = getCurrentUser()
     }
   },
   components: {
     Topbar,
     Preview,
     Editor,
-    SignUp
+    signInAndSignUp
   }
 }
 </script>
@@ -61,15 +82,18 @@ $designWidth: 1920;
 @function px($px) {
   @return $px/$designWidth * 10 + rem;
 }
+
 html,
 body,
 #app {
   height: 100%;
   overflow: hidden;
 }
+
 body {
   font-size: px(16);
 }
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -78,14 +102,17 @@ body {
   fill: white;
   flex-direction: column;
 }
+
 #exitPreview {
   display: none;
 }
+
 .topbar {
   position: relative;
   z-index: 1;
   box-shadow: 0 0 px(3) hsla(0, 0, 0, 0.5);
 }
+
 main {
   display: flex;
   flex: 1;
@@ -105,6 +132,7 @@ main {
     border-radius: px(4);
   }
 }
+
 .previewMode {
   > #topbar {
     display: none;
