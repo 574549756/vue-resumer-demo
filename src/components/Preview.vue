@@ -1,8 +1,9 @@
 <template>
     <div id="preview">
-        <h1>{{resume.profile.name || '请填写姓名'}}</h1>
-        <p>{{resume.profile.city || '请填写城市'}} | {{resume.profile.birth || '请填写出生日期'}}</p>
-        <hr>
+      <header class="header1"><h1>这里是头</h1></header>
+        <main class="idDiscription"><h1>{{resume.profile.name || '请填写姓名'}}</h1>
+        <p>{{resume.profile.city || '请填写城市'}} | {{resume.profile.birth || '请填写出生日期'}}</p></main>
+        <main class="resumeDiscription">
         <section v-if="filter(resume.studyHistory).length > 0">
           <h2>学习经历</h2>
           <ul>
@@ -35,6 +36,7 @@
             </li>
           </ul>
         </section>
+        </main>
         <section v-if="filter(resume.contacts).length > 0">
           <h2>联系方式</h2>
           <ul>
@@ -46,6 +48,7 @@
             </li>
           </ul>
         </section>
+        <footer class="footer1"></footer>
     </div>
 </template>
 
@@ -58,6 +61,8 @@
 </style>
 
 <script>
+let pageWidth = window.innerWidth
+styleTag.innerHTML = 'html{font-size:' + pageWidth / 10 + 'px;}'
 export default {
   props: ['resume'],
   methods: {
@@ -79,3 +84,39 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+$designWidth: 1920;
+@function px($px) {
+  @return $px/$designWidth * 10 + rem;
+}
+#preview {
+  overflow: auto;
+  .idDiscription {
+    display: flex;
+    height: px(672);
+  }
+  .header1 {
+    height: px(80);
+    background: #2a2b30;
+    display: flex;
+    padding: px(20) px(20);
+    h1 {
+      font-size: px(30);
+      height: px(60);
+      color: white;
+    }
+  }
+  .resumeDiscription {
+    display: flex;
+    height: px(1088);
+    background: white;
+  }
+  .footer1 {
+    height: px(80);
+    background: #f8f8f8;
+    display: flex;
+    padding: px(20) px(20);
+  }
+}
+</style>

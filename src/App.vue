@@ -115,16 +115,16 @@ body {
 main {
   display: flex;
   flex: 1;
-  background: #ddd;
+  background: #f1f1f1;
   > .editor {
     background: white;
     width: px(640);
   }
   > .preview {
-    padding: px(40);
+    margin: px(40) px(40) px(0) px(40);
     background: white;
     flex: 1;
-    box-shadow: 0px 0px 20px 0px rgba(rgb(0, 0, 0), 0.3) inset;
+    box-shadow: 0px 0px 20px 0px rgba(rgb(0, 0, 0), 0.3);
   }
 }
 
@@ -136,9 +136,12 @@ main {
     display: none;
   }
   #preview {
-    max-width: px(800);
-    margin: 0 auto;
+    max-width: px(450);
+    max-height: px(800);
+    height: 100%;
+    overflow: hidden;
     margin: px(32) auto;
+    position: relative;
   }
   #exitPreview {
     display: inline-block;

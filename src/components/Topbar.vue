@@ -45,7 +45,7 @@ $designWidth: 1920;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: px(80);
+  height: px(55);
   font-size: px(20);
   background: #f8f8f8;
   border-bottom: 1px solid #c7c7c7;
@@ -65,12 +65,12 @@ $designWidth: 1920;
       justify-content: center;
       align-items: center;
       width: px(80);
-      height: px(80);
+      height: px(55);
       background: #2a2b30;
       box-shadow: -10px 0px 10px 0px rgba(rgb(0, 0, 0), 0.5) inset;
       > img {
-        width: px(40);
-        height: px(40);
+        width: px(30);
+        height: px(30);
       }
     }
     > .mainHead {
