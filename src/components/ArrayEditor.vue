@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<h2>{{title}}</h2>
-		<hr class="start">
 		<el-form>
+		    <hr class="start">         
 			<div class="container" v-for="(work, index) in items" v-bind:key="index">
 				<el-form-item v-for="key in keys" v-bind:label="labels[key] || key" v-bind:key="key">
 					<el-input v-model="work[key]"></el-input>

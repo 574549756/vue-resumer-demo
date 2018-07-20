@@ -157,7 +157,7 @@ $designWidth: 1920;
       }
     }
     .dialogBoard {
-      width: px(500);
+      min-width: px(500);
       height: px(700);
       display: flex;
       flex-direction: column;

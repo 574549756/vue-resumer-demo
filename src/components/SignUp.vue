@@ -141,6 +141,7 @@ $designWidth: 1920;
   .el-checkbox.is-checked {
     .el-checkbox__label {
       color: black;
+      font-size: px(14);
     }
     .el-checkbox__input.is-checked {
       .el-checkbox__inner {
@@ -179,6 +180,9 @@ $designWidth: 1920;
         width: px(120);
         height: px(45);
         font-size: px(16);
+        span {
+          font-size: px(16);
+        }
         font-weight: bolder;
         background: #000;
         border-color: #ececec;
@@ -214,7 +218,7 @@ $designWidth: 1920;
         padding: 0;
         top: px(8);
         right: px(18);
-        font-size: px(13);
+        font-size: px(12);
         display: flex;
         justify-content: flex-end;
       }

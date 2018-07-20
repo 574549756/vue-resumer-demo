@@ -110,7 +110,6 @@ body {
 .topbar {
   position: relative;
   z-index: 1;
-  box-shadow: 0 0 px(3) hsla(0, 0, 0, 0.5);
 }
 
 main {
@@ -120,16 +119,12 @@ main {
   > .editor {
     background: white;
     width: px(640);
-    margin: px(16) px(8) px(16) px(16);
-    box-shadow: 0 0 px(3) hsla(0, 0, 0, 0.5);
-    border-radius: px(4);
   }
   > .preview {
+    padding: px(40);
     background: white;
     flex: 1;
-    margin: px(16) px(16) px(16) px(8);
-    box-shadow: 0 0 px(3) hsla(0, 0, 0, 0.5);
-    border-radius: px(4);
+    box-shadow: 0px 0px 20px 0px rgba(rgb(0, 0, 0), 0.3) inset;
   }
 }
 

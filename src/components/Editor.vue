@@ -97,29 +97,33 @@ $designWidth: 1920;
   min-height: px(100);
   display: flex;
   overflow: hidden;
-  width: px(600);
+  width: px(490);
   .sideNav {
-    background: #000;
-    width: px(100);
+    background: #2a2b30;
+    width: px(80);
+    padding-top: px(32);
     > ol {
       .icon {
-        width: px(36);
-        height: px(36);
+        width: px(30);
+        height: px(30);
         vertical-align: -0.15em;
         overflow: hidden;
-        margin: px(16) px(10);
+        margin: px(25) px(10);
       }
       :nth-child(1) {
         .icon {
-          width: px(40);
-          height: px(40);
-          margin: px(12) px(8) px(10) px(8);
+          width: px(35);
+          height: px(35);
+          margin: px(25) px(8) px(20) px(8);
         }
       }
       li {
         text-align: center;
         &.active {
-          background: white;
+          position: relative;
+          box-shadow: -40px 0px 30px 5px rgba(rgb(0, 0, 0), 0.6);
+          z-index: 30;
+          background: #f8f8f8;
           transition: all 0.5s;
           > .icon {
             fill: black;
@@ -130,16 +134,25 @@ $designWidth: 1920;
     }
   }
   > .panes {
-    width: px(400);
+    width: px(330);
     flex: 1;
     .active {
+      flex: 1;
+      background: #f8f8f8;
+      box-shadow: 0px 0px 20px 10px rgba(rgb(0, 0, 0), 0.5);
       h2 {
-        margin: px(20) px(0);
+        margin: px(30) px(0) px(50) px(0);
       }
       .el-form {
-        width: px(400);
+        width: px(330);
         transition: all 0.5s;
         position: relative;
+        > .start {
+          margin: px(20) px(0) px(40) px(0);
+        }
+        > .end {
+          margin: px(50) px(0) px(20) px(0);
+        }
         .el-icon-circle-plus {
           transform: scale(1.2);
           cursor: pointer;
@@ -151,18 +164,50 @@ $designWidth: 1920;
     }
     .container {
       position: relative;
+      border-radius: 0;
       > .start {
-        margin: px(30) px(0);
+        margin: px(20) px(0) px(20) px(0);
       }
       > .end {
-        margin: px(40) px(0) px(5) px(0);
+        margin: px(50) px(0) px(40) px(0);
       }
       .el-icon-remove {
         transform: scale(1.2);
         position: absolute;
         right: px(0);
-        top: px(10);
+        top: px(-28);
         cursor: pointer;
+      }
+    }
+    .el-form-item {
+      position: relative;
+
+      .el-form-item__content {
+        height: px(40);
+
+        .el-input {
+          height: px(63);
+          .el-input__inner {
+            padding: px(25) px(10) px(0) px(10);
+            font-size: px(15);
+            height: px(63);
+            border-radius: 0;
+            transition: all 0.4s;
+          }
+          .el-input__inner:focus {
+            border-color: #dcdfe6;
+            border-left-color: #f56c6ca4;
+            border-left-width: px(3);
+          }
+        }
+      }
+      .el-form-item__label {
+        position: absolute;
+        font-size: 12px;
+        color: #c6c6c6;
+        top: px(-2);
+        left: px(10);
+        z-index: 20;
       }
     }
     > li {
