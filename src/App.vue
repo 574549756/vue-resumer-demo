@@ -31,7 +31,8 @@ export default {
         studyHistory: [{ school: '', duration: '', degree: '' }],
         projects: [{ name: '', content: '' }],
         awards: [{ time: '', award: '' }],
-        contacts: [{ qq: '', wechat: '', phone: '', email: '' }]
+        contacts: [{ qq: '', wechat: '', phone: '', email: '' }],
+        ability: [{ability:''}]
       }
     }
   },
@@ -136,10 +137,9 @@ main {
     display: none;
   }
   #preview {
-    max-width: px(450);
-    max-height: px(800);
+    max-width: px(1350);
+    max-height: px(856);
     height: 100%;
-    overflow: hidden;
     margin: px(32) auto;
     position: relative;
   }

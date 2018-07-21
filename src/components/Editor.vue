@@ -2,7 +2,7 @@
   <div id="editor">
     <nav class="sideNav">
       <ol>
-        <li v-for="i in [0,1,2,3,4,5]" v-bind:class="{active: currentTab === i}" v-on:click="currentTab = i">
+        <li v-for="i in [0,1,2,3,4,5,6]" v-bind:class="{active: currentTab === i}" v-on:click="currentTab = i">
           <svg class="icon" aria-hidden="true">
             <use v-bind:xlink:href="`#icon-${icons[i]}`"></use>
           </svg>
@@ -30,6 +30,10 @@
         <ArrayEditor v-bind:items="resume.contacts" v-bind:labels="{qq: 'QQ', wechat: '微信', phone:'手机', email: 'Email'}" title="联系方式" />        
         </el-form>
       </li>
+      <li v-bind:class="{active: currentTab === 6}">
+        <ArrayEditor v-bind:items="resume.ability" v-bind:labels="{ability: '技能'}" title="技能熟练度" />        
+        </el-form>
+      </li>
     </ol>
   </div>
 </template>
@@ -50,7 +54,8 @@ export default {
         'work0',
         'project',
         'achievementregular',
-        'phone'
+        'phone',
+        'rank'
       ],
       profile: {
         name: '',
@@ -78,6 +83,11 @@ export default {
           wechat: '',
           phone: '',
           email: ''
+        }
+      ],
+      ability: [
+        {
+          ability: ''
         }
       ]
     }
