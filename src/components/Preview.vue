@@ -26,8 +26,8 @@
                 <p v-html="contact.email"></p>
               </li>
             </ul>
-            <footer class="footer1"></footer>
           </section>
+          <abilityProcess v-bind:resume="resume"/>
         </div>
       </div>
     </main>
@@ -80,6 +80,7 @@
 </style>
 
 <script>
+import abilityProcess from './abilityProcess.vue'
 import coverImg5 from '../assets/img/coverImg5.jpg'
 
 let pageWidth = window.innerWidth
@@ -107,6 +108,9 @@ export default {
       }
       return empty
     }
+  },
+  components:{
+    abilityProcess
   }
 }
 </script>

@@ -32,7 +32,7 @@ export default {
         projects: [{ name: '', content: '' }],
         awards: [{ time: '', award: '' }],
         contacts: [{ qq: '', wechat: '', phone: '', email: '' }],
-        ability: [{ability:''}]
+        skills: {HtmlCSS3:0, JavaScript:0,jQuery:0,Vue:0,React:0,NodeJs:0}
       }
     }
   },

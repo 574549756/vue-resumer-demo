@@ -31,7 +31,7 @@
         </el-form>
       </li>
       <li v-bind:class="{active: currentTab === 6}">
-        <ArrayEditor v-bind:items="resume.ability" v-bind:labels="{ability: '技能'}" title="技能熟练度" />        
+        <AbilityArrayEditor v-bind:resume="resume"/>        
         </el-form>
       </li>
     </ol>
@@ -41,9 +41,10 @@
 <script>
 import profileEditor from './profileEditor.vue'
 import ArrayEditor from './ArrayEditor.vue'
+import AbilityArrayEditor from './AbilityArrayEditor'
 
 export default {
-  components: { profileEditor, ArrayEditor },
+  components: { profileEditor, ArrayEditor, AbilityArrayEditor },
   props: ['resume'],
   data() {
     return {
@@ -85,11 +86,14 @@ export default {
           email: ''
         }
       ],
-      ability: [
-        {
-          ability: ''
-        }
-      ]
+      skills: {
+        HtmlCSS3: '',
+        JavaScript: '',
+        jQuery: '',
+        Vue: '',
+        React: '',
+        NodeJs: ''
+      }
     }
   },
   methods: {}
