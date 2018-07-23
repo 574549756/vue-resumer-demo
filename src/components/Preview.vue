@@ -7,27 +7,12 @@
         </header>
         <h1>{{resume.profile.name || '请填写姓名'}}</h1>
         <p>{{resume.profile.city || '请填写城市'}} | {{resume.profile.birth || '请填写出生日期'}}</p>
+        <div class="buildDate">
+          <p>创建时间</p>
+          <p>{{buildDate}}</p>
+        </div>
         <div class="footer">
-          <section v-if="filter(resume.contacts).length > 0">
-            <ul class="contactArea">
-              <div id="contactMenu">
-                <ol>
-                  <li v-for="i in [0,1,2,3]">
-                    <svg class="icon" aria-hidden="true">
-                      <use v-bind:xlink:href="`#icon-${contactIcon[i]}`"></use>
-                    </svg>
-                  </li>
-                </ol>
-              </div>
-              <li v-for='contact in filter(resume.contacts)'>
-                <p v-html="contact.qq"></p>
-                <p v-html="contact.wechat"></p>
-                <p v-html="contact.phone"></p>
-                <p v-html="contact.email"></p>
-              </li>
-            </ul>
-          </section>
-          <abilityProcess v-bind:resume="resume"/>
+          <abilityProcess v-bind:resume="resume" />
         </div>
       </div>
     </main>
@@ -35,6 +20,27 @@
       <header class="header1">
         <h1>这里是头</h1>
       </header>
+      <section v-if="filter(resume.contacts).length > 0">
+        
+        <ul class="contactArea">
+        
+          <div id="contactMenu">
+            <ol>
+              <li v-for="i in [0,1,2,3]">
+                <svg class="icon" aria-hidden="true">
+                  <use v-bind:xlink:href="`#icon-${contactIcon[i]}`"></use>
+                </svg>
+              </li>
+            </ol>
+          </div>
+          <li v-for='contact in filter(resume.contacts)'>
+            <p v-html="contact.qq"></p>
+            <p v-html="contact.wechat"></p>
+            <p v-html="contact.phone"></p>
+            <p v-html="contact.email"></p>
+          </li>
+        </ul>
+      </section>
       <section v-if="filter(resume.studyHistory).length > 0">
         <h2>学习经历</h2>
         <ul>
@@ -67,6 +73,7 @@
           </li>
         </ul>
       </section>
+      <footer class="footerEnd"></footer>
     </main>
   </div>
 </template>
@@ -88,8 +95,13 @@ styleTag.innerHTML = 'html{font-size:' + pageWidth / 10 + 'px;}'
 export default {
   data() {
     return {
-      contactIcon: ['qq', 'wechat', 'phone1', 'email']
+      contactIcon: ['qq', 'wechat', 'phone1', 'email'],
+      buildDate: ''
     }
+  },
+  created: function() {
+    var date = new Date()
+    this.buildDate = date.toLocaleDateString()
   },
   props: ['resume'],
   methods: {
@@ -109,7 +121,7 @@ export default {
       return empty
     }
   },
-  components:{
+  components: {
     abilityProcess
   }
 }
@@ -141,6 +153,14 @@ $designWidth: 1920;
       left: 0;
       background-position: center center;
       background-size: cover;
+      > .buildDate {
+        margin: px(100) px(80) px(0) px(80);
+        p {
+          color: #bebebe;
+          font-size: px(14);
+          margin: px(5) 0px;
+        }
+      }
       .footer {
         margin: px(120) p(0) px(40) px(50);
         h2 {
@@ -148,35 +168,11 @@ $designWidth: 1920;
           font-size: px(20);
           margin: px(420) px(0) px(5) px(50);
         }
-        .contactArea {
-          display: flex;
-          flex-direction: row;
-          text-align: flex-start;
-          margin: px(112) px(0) px(80) px(80);
-          justify-content: flex-start;
-          p {
-            color: #b1b1b1;
-            margin: px(13) px(0) px(0) px(20);
-            font-size: px(12);
-          }
-          #contactMenu {
-            > ol {
-              li {
-                margin: px(8);
-                .icon {
-                  width: 15px;
-                  height: 15px;
-                  fill: #b1b1b1;
-                }
-              }
-            }
-          }
-        }
       }
       > header {
         h1 {
           font-size: px(12);
-          margin: px(80) px(80) px(30) px(430);
+          margin: px(80) px(80) 0px px(450);
           color: #d3d3d3;
         }
       }
@@ -198,6 +194,34 @@ $designWidth: 1920;
     background: white;
     flex-direction: column;
     position: relative;
+    .contactArea {
+      padding: px(20);
+      width: px(200);
+      height: px(180);
+      display: flex;
+      flex-direction: row;
+      text-align: flex-start;
+      margin: px(80) px(80) px(80) px(380);
+      justify-content: flex-start;
+      background: #2d3a43;
+      p {
+        color: #b1b1b1;
+        margin: px(13) px(0) px(0) px(20);
+        font-size: px(12);
+      }
+      #contactMenu {
+        > ol {
+          li {
+            margin: px(8);
+            .icon {
+              width: 15px;
+              height: 15px;
+              fill: #b1b1b1;
+            }
+          }
+        }
+      }
+    }
     .header1 {
       height: px(50);
       background: #2d3a43;
@@ -209,6 +233,13 @@ $designWidth: 1920;
         height: px(60);
         color: white;
       }
+    }
+    .footerEnd {
+      position: absolute;
+      bottom: 0;
+      height: px(50);
+      width: 100%;
+      background: #f4f4f4;
     }
   }
 }

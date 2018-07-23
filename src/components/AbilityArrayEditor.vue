@@ -36,12 +36,21 @@
 </template>
 
 <script>
-
 export default {
   data() {
     return {}
   },
-  props: ['resume'],
-  
+  props: ['resume']
 }
 </script>
+
+<style lang="scss">
+.el-slider__runway {
+  .el-slider__bar {
+    background: #f56c6ca4;
+  }
+  .el-slider__button.el-tooltip {
+    border-color: #f05d5da4;
+  }
+}
+</style>
