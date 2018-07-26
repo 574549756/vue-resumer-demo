@@ -20,7 +20,7 @@
         <ArrayEditor v-bind:items="resume.jobExperience" v-bind:labels="{company: '公司', content: '工作内容',duration: '时间'}" title="工作经历" />
       </li>
       <li v-bind:class="{active: currentTab === 3}">
-        <ArrayEditor v-bind:items="resume.projects" v-bind:labels="{name: '项目名称', content: '工作内容'}" title="项目信息" />
+        <ArrayEditor v-bind:items="resume.projects" v-bind:labels="{name: '项目名称', content: '技术栈',projectPreview:'项目预览链接'}" title="项目信息" />
       </li>
       <li v-bind:class="{active: currentTab === 4}">
         <ArrayEditor v-bind:items="resume.awards" v-bind:labels="{time: '时间', award: '奖励详情'}" title="获奖信息" />

@@ -13,8 +13,8 @@
         </div>
       </div>
       <footer class="footer">
-          <abilityProcess v-bind:resume="resume" />
-        </footer>
+        <abilityProcess v-bind:resume="resume" />
+      </footer>
     </main>
     <main class="resumeDiscription">
       <header class="header1">
@@ -22,61 +22,64 @@
       </header>
       <div class="main1">
         <h1 class="headerR">前端工程师</h1>
-      <section v-if="filter(resume.contacts).length > 0">
-        <main class="mainContact">
-          <h2>联系方式</h2>
-        <ul class="contactArea">
-          <div id="contactMenu">
-            <ol>
-              <li v-for="i in [0,1,2,3,4]">
-                <svg class="icon" aria-hidden="true">
-                  <use v-bind:xlink:href="`#icon-${contactIcon[i]}`"></use>
-                </svg>
+        <section v-if="filter(resume.contacts).length > 0">
+          <main class="mainContact">
+            <h2>联系方式</h2>
+            <ul class="contactArea">
+              <div id="contactMenu">
+                <ol>
+                  <li v-for="i in [0,1,2,3,4]">
+                    <svg class="icon" aria-hidden="true">
+                      <use v-bind:xlink:href="`#icon-${contactIcon[i]}`"></use>
+                    </svg>
+                  </li>
+                </ol>
+              </div>
+              <li v-for='contact in filter(resume.contacts)'>
+                <p v-html="contact.qq || '请填写QQ'"></p>
+                <p v-html="contact.wechat || '请填写微信'"></p>
+                <p v-html="contact.phone || '请填写手机号'"></p>
+                <p v-html="contact.email || '请填写邮箱'"></p>
+                <p v-html="contact.github || '请填写GitHub地址'"></p>
               </li>
-            </ol>
-          </div>
-          <li v-for='contact in filter(resume.contacts)'>
-            <p v-html="contact.qq || '请填写QQ'"></p>
-            <p v-html="contact.wechat || '请填写微信'"></p>
-            <p v-html="contact.phone || '请填写手机号'" ></p>
-            <p v-html="contact.email || '请填写邮箱'"></p>
-            <p v-html="contact.github || '请填写GitHub地址'"></p>            
-          </li>
-        </ul></main>
-      </section>
-      <section class="studyHistory" v-if="filter(resume.studyHistory).length > 0">
-        <ul>
-          <li v-for='study in filter(resume.studyHistory)'>
-            <h2>{{study.duration}}</h2>
-            <p> {{study.school}} {{study.degree}}</p>
-          </li>
-        </ul>
-      </section>
-      <section class="jobExperience" v-if="filter(resume.jobExperience).length > 0">
-        <ul>
-          <li v-for='job in filter(resume.jobExperience)'>
-            <h2>{{job.duration}}</h2>
-            <p> {{job.company}} {{job.content}}</p>
-          </li>
-        </ul>
-      </section>
+            </ul>
+          </main>
+        </section>
+        <section class="studyHistory" v-if="filter(resume.studyHistory).length > 0">
+          <ul>
+            <li v-for='study in filter(resume.studyHistory)'>
+              <h2>{{study.duration}}</h2>
+              <p> {{study.school}} {{study.degree}}</p>
+            </li>
+          </ul>
+        </section>
+        <section class="jobExperience" v-if="filter(resume.jobExperience).length > 0">
+          <ul>
+            <li v-for='job in filter(resume.jobExperience)'>
+              <h2>{{job.duration}}</h2>
+              <p> {{job.company}} {{job.content}}</p>
+            </li>
+          </ul>
+        </section>
       </div>
-      <section v-if="filter(resume.projects).length > 0">
-        <h2>项目</h2>
-        <ul>
-          <li v-for='project in filter(resume.projects)'>
-            {{project.name}} | {{project.content}}
-          </li>
-        </ul>
-      </section>
-      <section v-if="filter(resume.awards).length > 0">
+      <main class="main2">
+        <section class="awardDiscription" v-if="filter(resume.awards).length > 0">
         <h2>获奖信息</h2>
         <ul>
-          <li v-for='award in filter(resume.awards)'>
-            {{award.time}} | {{award.award}}
+          <li v-for='award in filter(resume.awards)' class="awardContent">
+            <h3>{{award.time}}</h3><p>{{award.award}}</p>
           </li>
         </ul>
       </section>
+      <section class="projectDiscription" v-if="filter(resume.projects).length > 0">
+        <h2>项目信息</h2>
+        <ul>
+          <li v-for='project in filter(resume.projects)' class="projectContent">
+            <h3>{{project.name}}</h3><p>{{project.content}} <a href="project.projectPreview">ViewDemo</a></p>
+          </li>
+        </ul>
+      </section>
+      </main>
       <footer class="footerEnd"></footer>
     </main>
   </div>
@@ -196,6 +199,11 @@ $designWidth: 1920;
       width: 100%;
       height: px(380);
       background: #f4f4f4;
+      .rectango {
+        width: px(40);
+        height: px(40);
+        background: #000;
+      }
       .jobExperience,
       .studyHistory {
         color: #747474;
@@ -270,6 +278,47 @@ $designWidth: 1920;
       height: px(50);
       width: 100%;
       background: #f4f4f4;
+    }
+  }
+  .main2 {
+    display: flex;
+    flex-direction: row;
+    background: rgb(249, 248, 250);
+    padding: px(40) px(30) px(0) px(30);
+    .projectDiscription,
+    .awardDiscription {
+      width: 100%;
+      padding: 0 px(20);
+      > h2 {
+        font-size: px(30);
+        font-weight: 300;
+        margin-bottom: px(20);
+      }
+      .projectContent,
+      .awardContent {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        p,
+        a,
+        h3 {
+          color: #747474;
+          font-size: px(15);
+        }
+        a {
+          color: rgba(245, 108, 108, 0.643);
+        }
+        p {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        h3 {
+          margin: px(8) 0;
+          font-weight: 500;
+          color: #414141;
+        }
+      }
     }
   }
 }
