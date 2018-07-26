@@ -63,7 +63,7 @@ $designWidth: 1920;
 }
 
 #dialog {
-  z-index: 30;
+  z-index: 40;
   background-image: url(../assets/img/background/backgroundImg.jpg);
   background-position: center center;
   background-size: cover;

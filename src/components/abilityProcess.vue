@@ -36,13 +36,12 @@ $designWidth: 1920;
 }
 
 .skills {
-  margin-top: px(75);
   > ul {
     > li {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: px(80);
+      padding: px(50);
 
       .leftSideSkills,
       .rightSideSkills {
@@ -52,7 +51,8 @@ $designWidth: 1920;
           }
           .el-progress-bar {
             .el-progress-bar__outer {
-              width: px(200);
+              margin: px(8) 0;
+              width: px(250);
             }
           }
         }

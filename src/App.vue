@@ -31,7 +31,7 @@ export default {
         studyHistory: [{ school: '', duration: '', degree: '' }],
         projects: [{ name: '', content: '' }],
         awards: [{ time: '', award: '' }],
-        contacts: [{ qq: '', wechat: '', phone: '', email: '' }],
+        contacts: [{ qq: '', wechat: '', phone: '', email: '' ,github:''}],
         skills: {HtmlCSS3:0, JavaScript:0,jQuery:0,Vue:0,React:0,NodeJs:0}
       }
     }
