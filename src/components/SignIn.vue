@@ -14,7 +14,7 @@
           </el-form-item>
           <div class="underLogin">
             <el-checkbox v-model="checked">确认信息</el-checkbox>
-            <a href="" class="freeTry">免注册试用?</a>
+            <a href="" class="freeTry">忘记密码？</a>
           </div>
           <el-form-item>
             <el-button type="primary" @click="submitForm('ruleForm2')">登录</el-button>

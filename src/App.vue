@@ -1,9 +1,9 @@
 <template>
   <div id="app" v-bind:class="{previewMode:previewMode}">
-    <signInAndSignUp class="signInAndSignUp" v-if="currentUser===null" v-on:click="changeCurrent" @switchCurrent="changeCurrent"/>
-    <Topbar class="topbar" v-on:preview="preview" />
+    <signInAndSignUp class="signInAndSignUp" v-if="currentUser===null||freeTryMode===true" @switchCurrent="changeCurrent" @freeTry="freeTry"/>
+    <Topbar class="topbar" v-on:preview="preview" v-bind:freeTryMode="freeTryMode"/>
     <main>
-      <Editor v-bind:resume='resume' class="editor" />
+      <Editor class="editor" />
       <Preview v-bind:resume='resume' class="preview" />
     </main>
     <el-button id="exitPreview" v-on:click="exitPreview">退出预览</el-button>
@@ -15,6 +15,7 @@ import signInAndSignUp from './components/signInAndSignUp'
 import Topbar from './components/Topbar'
 import Preview from './components/Preview'
 import Editor from './components/Editor'
+import store from './store/index'
 
 // 自适应
 let pageWidth = window.innerWidth
@@ -24,23 +25,8 @@ export default {
   data() {
     return {
       currentUser: null,
-      previewMode: false,
-      resume: {
-        profile: { name: '', city: '', birth: '' },
-        jobExperience: [{ company: '', content: '', duration: '' }],
-        studyHistory: [{ school: '', duration: '', degree: '' }],
-        projects: [{ name: '', content: '', projectPreview: '' }],
-        awards: [{ time: '', award: '' }],
-        contacts: [{ qq: '', wechat: '', phone: '', email: '', github: '' }],
-        skills: {
-          HtmlCSS3: 0,
-          JavaScript: 0,
-          jQuery: 0,
-          Vue: 0,
-          React: 0,
-          NodeJs: 0
-        }
-      }
+      freeTryMode: false,
+      previewMode: false
     }
   },
   created: function() {
@@ -48,6 +34,9 @@ export default {
     this.currentUser = this.getCurrentUser()
   },
   methods: {
+    freeTry() {
+      this.freeTryMode = true
+    },
     preview() {
       this.previewMode = true
     },
@@ -55,25 +44,26 @@ export default {
       this.previewMode = false
     },
     getCurrentUser: function() {
-      console.log('调用获取用户函数')
       let current = AV.User.current()
-      console.log('赋值')
       if (current) {
         let {
           id,
           createdAt,
           attributes: { username }
         } = current
-        console.log(current)
-        console.log('结束')
         return { id, username, createdAt }
       } else {
-        console.log(current)
         return null
       }
     },
     changeCurrent: function() {
       this.currentUser = this.getCurrentUser()
+    }
+  },
+  store,
+  computed: {
+    resume() {
+      return this.$store.state.resume
     }
   },
   components: {

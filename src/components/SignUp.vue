@@ -17,7 +17,7 @@
           </el-form-item>
           <div class="underLogin">
             <el-checkbox v-model="checked">确认信息</el-checkbox>
-            <a href="" class="freeTry">免注册试用?</a>
+            <a href="javascript:void(0)" class="freeTry" v-on:click="freeTry">免注册试用?</a>
           </div>
           <el-form-item>
             <el-button type="primary" @click="submitForm('ruleForm2')">注册</el-button>
@@ -103,6 +103,9 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields()
+    },
+    freeTry(){
+      this.$emit('freeTry')
     }
   }
 }

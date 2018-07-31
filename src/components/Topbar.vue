@@ -6,10 +6,10 @@
         </div>
         <div class="actions">
             <el-row>
-                <el-button v-if="currentUser">注册</el-button>
-                <el-button v-if="currentUser">登录</el-button>
-                <el-button v-on:click="logout" v-if="!currentUser">登出</el-button>
-                <el-button v-on:click="preview">预览</el-button>
+                <el-button v-if="currentUser&&freeTryMode===true">注册</el-button>
+                <el-button v-if="currentUser&&freeTryMode===true">登录</el-button>
+                <el-button v-on:click="logout" v-if="!currentUser&&freeTryMode===false">登出</el-button>
+                <el-button v-on:click="preview" type="primary">预览</el-button>
             </el-row>
         </div>
     </div>
@@ -19,6 +19,7 @@
 export default {
   data() {
     return {
+      freeTryMode: false,
       currentUser: null
     }
   },
@@ -28,6 +29,7 @@ export default {
     },
     logout: function() {
       AV.User.logOut()
+      this.freeTryMode = false
       this.currentUser = null
       window.location.reload()
     }
@@ -54,6 +56,29 @@ $designWidth: 1920;
     align-items: center;
     justify-content: center;
     height: px(80);
+    .el-row {
+      margin-right: px(40);
+      .el-button--primary {
+        width: px(120);
+        height: px(40);
+        font-size: px(16);
+        span {
+          font-size: px(16);
+        }
+        font-weight: bolder;
+        background: #2a2b30;
+        border-color: #ececec;
+        color: #c6c6c6;
+      }
+      .el-button--default {
+        width: px(120);
+        height: px(40);
+        font-size: px(16);
+        background: #ffffff;
+        color: #787878;
+        border-color: #ececec;
+      }
+    }
   }
   .logo {
     padding-right: px(216);

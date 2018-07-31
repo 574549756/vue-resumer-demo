@@ -37,10 +37,23 @@
 
 <script>
 export default {
+  props: ['resume'],
   data() {
     return {}
   },
-  props: ['resume']
+  computed: {
+    selected: {
+      set(value) {
+        return this.$store.commit('switchTab', value)
+      },
+      get() {
+        return this.$store.state.selected
+      },
+      resume() {
+        return this.$store.state.resume
+      }
+    }
+  }
 }
 </script>
 

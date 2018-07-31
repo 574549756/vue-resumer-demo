@@ -5,7 +5,7 @@
                 <div class="switchSignIn" v-bind:class="{signInMode:signInMode}" v-on:click="toSignIn">登录</div>
                 <div class="switchSignUp" v-bind:class="{signUpMode:signUpMode}" v-on:click="toSignUp">注册</div>
             </div>
-            <SignUp v-bind:class="{signUpMode:!signUpMode}" @switchCurrent="switchCurrent"/>
+            <SignUp v-bind:class="{signUpMode:!signUpMode}" @switchCurrent="switchCurrent" @freeTry="freeTry"/>
             <SignIn v-bind:class="{signInMode:!signInMode}" @switchCurrent="switchCurrent"/>
             <div class="coverImg">
                 <div class="inner">
@@ -47,6 +47,9 @@ export default {
     },
     switchCurrent() {
       this.$emit('switchCurrent')
+    },
+    freeTry(){
+      this.$emit('freeTry')
     }
   },
   components: {

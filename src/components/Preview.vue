@@ -6,7 +6,7 @@
           <h1>ex.arc.zhang@gmail.com</h1>
         </header>
         <h1>{{resume.profile.name || '请填写姓名'}}</h1>
-        <p>{{resume.profile.city || '请填写城市'}} | {{resume.profile.birth || '请填写出生日期'}}</p>
+        <p>{{resume.profile.city || '请填写城市'}}| {{resume.profile.birth || '请填写出生日期'}}</p>
         <div class="buildDate">
           <p>创建时间</p>
           <p>{{buildDate}}</p>
@@ -110,7 +110,6 @@ export default {
     var date = new Date()
     this.buildDate = date.toLocaleDateString()
   },
-  props: ['resume'],
   methods: {
     filter(array) {
       // 找出非空对象
@@ -130,6 +129,11 @@ export default {
   },
   components: {
     abilityProcess
+  },
+  computed: {
+    resume() {
+      return this.$store.state.resume
+    }
   }
 }
 </script>

@@ -28,11 +28,9 @@
 
       <li v-bind:class="{active: currentTab === 5}">
         <ArrayEditor v-bind:items="resume.contacts" v-bind:labels="{qq: 'QQ', wechat: '微信', phone:'手机', email: 'Email'}" title="联系方式" />        
-        </el-form>
       </li>
       <li v-bind:class="{active: currentTab === 6}">
         <AbilityArrayEditor v-bind:resume="resume"/>        
-        </el-form>
       </li>
     </ol>
   </div>
@@ -44,8 +42,6 @@ import ArrayEditor from './ArrayEditor.vue'
 import AbilityArrayEditor from './AbilityArrayEditor'
 
 export default {
-  components: { profileEditor, ArrayEditor, AbilityArrayEditor },
-  props: ['resume'],
   data() {
     return {
       currentTab: 0,
@@ -57,46 +53,21 @@ export default {
         'achievementregular',
         'phone',
         'rank'
-      ],
-      profile: {
-        name: '',
-        city: '',
-        birth: ''
-      },
-      jobExperience: [
-        {
-          company: '',
-          content: '',
-          xxx: ''
-        }
-      ],
-      studyHistory: [{ school: '', duration: '', degree: '' }],
-      projects: [
-        {
-          name: '',
-          content: ''
-        }
-      ],
-      awards: [{ time: '', award: '' }],
-      contacts: [
-        {
-          qq: '',
-          wechat: '',
-          phone: '',
-          email: ''
-        }
-      ],
-      skills: {
-        HtmlCSS3: '',
-        JavaScript: '',
-        jQuery: '',
-        Vue: '',
-        React: '',
-        NodeJs: ''
-      }
+      ]
     }
   },
-  methods: {}
+  components: { profileEditor, ArrayEditor, AbilityArrayEditor },
+  computed: {
+    set(value) {
+      return this.$store.commit('switchTab', value)
+    },
+    get() {
+      return this.$store.state.selected
+    },
+    resume() {
+      return this.$store.state.resume
+    }
+  }
 }
 </script>
 
