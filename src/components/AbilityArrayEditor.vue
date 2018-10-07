@@ -11,7 +11,7 @@
           <el-slider v-model="resume.skills.JavaScript" :step="5">
           </el-slider>
         </div>
-        <h3>jQuery</h3>        
+        <h3>HTTP</h3>        
         <div class="block">
           <el-slider v-model="resume.skills.jQuery" :step="5">
           </el-slider>
@@ -59,11 +59,11 @@ export default {
 
 <style lang="scss">
 .el-slider__runway {
-  .el-slider__bar {
-    background: #f56c6ca4;
-  }
-  .el-slider__button.el-tooltip {
-    border-color: #f05d5da4;
-  }
+    .el-slider__bar {
+        background: #f56c6ca4;
+    }
+    .el-slider__button.el-tooltip {
+        border-color: #f05d5da4;
+    }
 }
 </style>
