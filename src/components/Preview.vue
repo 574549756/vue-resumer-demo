@@ -105,7 +105,7 @@
 				</div>
 			</div>
 			<footer class="onlineMode">
-				<a href="">ONLINE RESUME</a>
+				<a :href="resume.profile.onlineResume">ONLINE RESUME</a>
 			</footer>
 			<main class="main2">
 				<section class="projectDiscription" v-if="filter(resume.projects).length > 0">
@@ -412,6 +412,7 @@ $designWidth: 1920;
 			flex-direction: column;
 			.projectContent {
 				display: flex;
+				border-left: 2px solid rgba(245, 108, 108, 0.643);
 				width: 100%;
 				justify-content: space-between;
 				flex-direction: column;

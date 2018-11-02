@@ -1,12 +1,11 @@
 <template>
-	<div id="app" v-bind:class="{previewMode:previewMode}">
+	<div id="app" v-bind:class="{previewMode:mode.previewMode}">
 		<signInAndSignUp
 			class="signInAndSignUp"
-			v-if="currentUser===null||freeTryMode===true"
+			v-if="mode.currentUser===null"
 			@switchCurrent="changeCurrent"
-			@freeTry="freeTry"
 		/>
-		<Topbar class="topbar" v-on:preview="preview" v-bind:freeTryMode="freeTryMode"/>
+		<Topbar class="topbar" v-on:preview="preview"/>
 		<main>
 			<Editor class="editor"/>
 			<Preview v-bind:resume="resume" class="preview"/>
@@ -28,25 +27,18 @@ styleTag.innerHTML = "html{font-size:" + pageWidth / 10 + "px;}";
 
 export default {
 	data() {
-		return {
-			currentUser: null,
-			freeTryMode: false,
-			previewMode: false
-		};
+		return {};
 	},
 	created: function() {
 		console.log("最开始执行了");
-		this.currentUser = this.getCurrentUser();
+		this.mode.currentUser = this.getCurrentUser();
 	},
 	methods: {
-		freeTry() {
-			this.freeTryMode = true;
-		},
 		preview() {
-			this.previewMode = true;
+			this.mode.previewMode = true;
 		},
 		exitPreview() {
-			this.previewMode = false;
+			this.mode.previewMode = false;
 		},
 		getCurrentUser: function() {
 			let current = AV.User.current();
@@ -62,13 +54,16 @@ export default {
 			}
 		},
 		changeCurrent: function() {
-			this.currentUser = this.getCurrentUser();
+			this.mode.currentUser = this.getCurrentUser();
 		}
 	},
 	store,
 	computed: {
 		resume() {
 			return this.$store.state.resume;
+		},
+		mode() {
+			return this.$store.state.mode;
 		}
 	},
 	components: {

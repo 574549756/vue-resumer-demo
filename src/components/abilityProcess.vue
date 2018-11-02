@@ -46,6 +46,7 @@ $designWidth: 1920;
 			display: flex;
 			justify-content: center;
 			align-items: flex-start;
+			border-left: 2px solid rgba(245, 108, 108, 0.643);
 			background: #f9f8fa;
 			box-shadow: 0 0 10px 0 rgba($color: #000000, $alpha: 0.05);
 			padding: px(10);

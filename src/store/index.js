@@ -5,8 +5,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    freeTryMode: false,
-    currentUser: null,
+    mode: {
+      freeTryMode: false,
+      currentUser: null,
+      previewMode: false
+    },
     selected: "profile",
     currentTab: 0,
     resume: {
@@ -19,7 +22,7 @@ export default new Vuex.Store({
         gender: "男",
         degree: "本科",
         school: "少数民族聚居的学校",
-        onlineResume: "www.baidu.com"
+        onlineResume: "http://www.baidu.com"
       },
       jobExperience: [
         {
