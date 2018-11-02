@@ -24,10 +24,10 @@ export default {
 	props: ["items"],
 	methods: {
 		toNumber(xxx) {
-			return xxx + 0;
+			return xxx + 0
 		}
 	}
-};
+}
 </script>
 
 <style lang="scss">

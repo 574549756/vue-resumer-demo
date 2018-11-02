@@ -5,7 +5,7 @@
 			v-if="mode.currentUser===null"
 			@switchCurrent="changeCurrent"
 		/>
-		<Topbar class="topbar" v-on:preview="preview"/>
+		<Topbar class="topbar" v-on:preview="preview" :currentUser="mode.currentUser"/>
 		<main>
 			<Editor class="editor"/>
 			<Preview v-bind:resume="resume" class="preview"/>
@@ -15,55 +15,55 @@
 </template>
 
 <script>
-import signInAndSignUp from "./components/signInAndSignUp";
-import Topbar from "./components/Topbar";
-import Preview from "./components/Preview";
-import Editor from "./components/Editor";
-import store from "./store/index";
+import signInAndSignUp from "./components/signInAndSignUp"
+import Topbar from "./components/Topbar"
+import Preview from "./components/Preview"
+import Editor from "./components/Editor"
+import store from "./store/index"
 
 // 自适应
-let pageWidth = window.innerWidth;
-styleTag.innerHTML = "html{font-size:" + pageWidth / 10 + "px;}";
+let pageWidth = window.innerWidth
+styleTag.innerHTML = "html{font-size:" + pageWidth / 10 + "px;}"
 
 export default {
 	data() {
-		return {};
+		return {}
 	},
 	created: function() {
-		console.log("最开始执行了");
-		this.mode.currentUser = this.getCurrentUser();
+		console.log("最开始执行了")
+		this.mode.currentUser = this.getCurrentUser()
 	},
 	methods: {
 		preview() {
-			this.mode.previewMode = true;
+			this.mode.previewMode = true
 		},
 		exitPreview() {
-			this.mode.previewMode = false;
+			this.mode.previewMode = false
 		},
 		getCurrentUser: function() {
-			let current = AV.User.current();
+			let current = AV.User.current()
 			if (current) {
 				let {
 					id,
 					createdAt,
 					attributes: { username }
-				} = current;
-				return { id, username, createdAt };
+				} = current
+				return { id, username, createdAt }
 			} else {
-				return null;
+				return null
 			}
 		},
 		changeCurrent: function() {
-			this.mode.currentUser = this.getCurrentUser();
+			this.mode.currentUser = this.getCurrentUser()
 		}
 	},
 	store,
 	computed: {
 		resume() {
-			return this.$store.state.resume;
+			return this.$store.state.resume
 		},
 		mode() {
-			return this.$store.state.mode;
+			return this.$store.state.mode
 		}
 	},
 	components: {
@@ -72,7 +72,7 @@ export default {
 		Editor,
 		signInAndSignUp
 	}
-};
+}
 </script>
 
 <style lang="scss">

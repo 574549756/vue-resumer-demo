@@ -1,47 +1,49 @@
 <template>
-  <div id="topbar">
-    <div class="logo">
-      <div class="hideSideBar">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-gerenlogoBold"></use>
-        </svg>
-      </div>
-      <section class="mainHead">
-        <h1>Vue</h1>
-        <h2>Resumer</h2>
-      </section>
-    </div>
-    <div class="actions">
-      <el-row>
-        <el-button v-if="currentUser&&freeTryMode===true">注册</el-button>
-        <el-button v-if="currentUser&&freeTryMode===true">登录</el-button>
-        <el-button v-on:click="logout" v-if="!currentUser&&freeTryMode===false">登出</el-button>
-        <el-button v-on:click="preview" type="primary">预览</el-button>
-      </el-row>
-    </div>
-  </div>
+	<div id="topbar">
+		<div class="logo">
+			<div class="hideSideBar">
+				<svg class="icon" aria-hidden="true">
+					<use xlink:href="#icon-gerenlogoBold"></use>
+				</svg>
+			</div>
+			<section class="mainHead">
+				<h1>Vue</h1>
+				<h2>Resumer</h2>
+			</section>
+		</div>
+		<div class="actions">
+			<p>欢迎回来!</p>
+			<span>{{currentUser.username}}</span>
+			<el-row>
+				<el-button v-if="!currentUser&&freeTryMode===true">注册</el-button>
+				<el-button v-if="!currentUser&&freeTryMode===true">登录</el-button>
+				<el-button v-on:click="logout" v-if="currentUser">登出</el-button>
+				<el-button v-on:click="preview" type="primary">预览</el-button>
+			</el-row>
+		</div>
+	</div>
 </template>
 
 <script>
 export default {
+	props: ["currentUser"],
 	data() {
 		return {
-			freeTryMode: false,
-			currentUser: null
-		};
+			freeTryMode: false
+		}
 	},
 	methods: {
 		preview() {
-			this.$emit("preview");
+			this.$emit("preview")
 		},
 		logout: function() {
-			AV.User.logOut();
-			this.freeTryMode = false;
-			this.currentUser = null;
-			window.location.reload();
+			AV.User.logOut()
+			this.freeTryMode = false
+			this.currentUser = null
+			window.location.reload()
 		}
 	}
-};
+}
 </script>
 
 
@@ -97,7 +99,8 @@ $designWidth: 1920;
 			width: px(80);
 			height: px(55);
 			background: #2a2b30;
-			box-shadow: -10px 0px 10px 0px rgba(rgb(0, 0, 0), 0.5) inset;
+			box-shadow: -10px 0px 10px 0px rgba(rgb(0, 0, 0), 0.5)
+				inset;
 			> svg {
 				width: px(38);
 				height: px(38);

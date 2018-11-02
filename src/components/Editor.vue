@@ -53,9 +53,9 @@
 </template>
 
 <script>
-import profileEditor from "./profileEditor.vue";
-import ArrayEditor from "./ArrayEditor.vue";
-import AbilityArrayEditor from "./AbilityArrayEditor";
+import profileEditor from "./profileEditor.vue"
+import ArrayEditor from "./ArrayEditor.vue"
+import AbilityArrayEditor from "./AbilityArrayEditor"
 
 export default {
 	data() {
@@ -69,21 +69,28 @@ export default {
 				"phone",
 				"rank"
 			]
-		};
+		}
 	},
-	components: { profileEditor, ArrayEditor, AbilityArrayEditor },
+	components: {
+		profileEditor,
+		ArrayEditor,
+		AbilityArrayEditor
+	},
 	computed: {
 		set(value) {
-			return this.$store.commit("switchTab", value);
+			return this.$store.commit(
+				"switchTab",
+				value
+			)
 		},
 		get() {
-			return this.$store.state.selected;
+			return this.$store.state.selected
 		},
 		resume() {
-			return this.$store.state.resume;
+			return this.$store.state.resume
 		}
 	}
-};
+}
 </script>
 
 
@@ -114,14 +121,16 @@ $designWidth: 1920;
 				.icon {
 					width: px(35);
 					height: px(35);
-					margin: px(25) px(8) px(20) px(8);
+					margin: px(25) px(8) px(20)
+						px(8);
 				}
 			}
 			li {
 				text-align: center;
 				&.active {
 					position: relative;
-					box-shadow: -40px 0px 30px 5px rgba(rgb(0, 0, 0), 0.6);
+					box-shadow: -40px 0px 30px 5px
+						rgba(rgb(0, 0, 0), 0.6);
 					z-index: 30;
 					background: #f8f8f8;
 					transition: all 0.5s;
@@ -139,7 +148,8 @@ $designWidth: 1920;
 		.active {
 			flex: 1;
 			background: #f8f8f8;
-			box-shadow: 0px 0px 20px 10px rgba(rgb(0, 0, 0), 0.5);
+			box-shadow: 0px 0px 20px 10px
+				rgba(rgb(0, 0, 0), 0.5);
 			h2 {
 				margin: px(30) px(0) px(50) px(0);
 			}
@@ -148,10 +158,12 @@ $designWidth: 1920;
 				transition: all 0.5s;
 				position: relative;
 				> .start {
-					margin: px(20) px(0) px(40) px(0);
+					margin: px(20) px(0) px(40)
+						px(0);
 				}
 				> .end {
-					margin: px(50) px(0) px(20) px(0);
+					margin: px(50) px(0) px(20)
+						px(0);
 				}
 				.el-icon-circle-plus {
 					transform: scale(1.2);
@@ -188,7 +200,8 @@ $designWidth: 1920;
 				.el-input {
 					height: px(63);
 					.el-input__inner {
-						padding: px(25) px(10) px(0) px(10);
+						padding: px(25) px(10)
+							px(0) px(10);
 						font-size: px(15);
 						height: px(63);
 						border-radius: 0;

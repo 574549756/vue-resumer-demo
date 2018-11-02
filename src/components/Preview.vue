@@ -134,37 +134,46 @@
 </style>
 
 <script>
-import abilityProcess from "./abilityProcess.vue";
-import coverImg5 from "../assets/img/coverImg5.jpg";
+import abilityProcess from "./abilityProcess.vue"
+import coverImg5 from "../assets/img/coverImg5.jpg"
 
-let pageWidth = window.innerWidth;
-styleTag.innerHTML = "html{font-size:" + pageWidth / 10 + "px;}";
+let pageWidth = window.innerWidth
+styleTag.innerHTML =
+	"html{font-size:" + pageWidth / 10 + "px;}"
 export default {
 	data() {
 		return {
-			contactIcon: ["qq", "wechat", "phone1", "email", "github"],
+			contactIcon: [
+				"qq",
+				"wechat",
+				"phone1",
+				"email",
+				"github"
+			],
 			buildDate: ""
-		};
+		}
 	},
 	created: function() {
-		var date = new Date();
-		this.buildDate = date.toLocaleDateString();
+		var date = new Date()
+		this.buildDate = date.toLocaleDateString()
 	},
 	methods: {
 		filter(array) {
 			// 找出非空对象
-			return array.filter(item => !this.isEmpty(item));
+			return array.filter(
+				item => !this.isEmpty(item)
+			)
 		},
 		isEmpty(object) {
 			// 只要有一个 value 不是 falsy ，就返回 false
-			let empty = true;
+			let empty = true
 			for (let key in object) {
 				if (object[key]) {
-					empty = false;
-					break;
+					empty = false
+					break
 				}
 			}
-			return empty;
+			return empty
 		}
 	},
 	components: {
@@ -172,10 +181,10 @@ export default {
 	},
 	computed: {
 		resume() {
-			return this.$store.state.resume;
+			return this.$store.state.resume
 		}
 	}
-};
+}
 </script>
 
 <style lang="scss">
@@ -214,7 +223,8 @@ $designWidth: 1920;
 				align-items: flex-end;
 				.mainContact {
 					display: flex;
-					box-shadow: 0 0 30px 0 rgba(255, 255, 255, 0.2);
+					box-shadow: 0 0 30px 0
+						rgba(255, 255, 255, 0.2);
 					background: #2d3a4311;
 					flex-direction: column;
 					margin-left: px(10);
@@ -238,8 +248,13 @@ $designWidth: 1920;
 								}
 								p {
 									color: #f7f7f7;
-									margin: 0 px(0) px(0) px(10);
-									font-size: px(12);
+									margin: 0
+										px(0)
+										px(0)
+										px(10);
+									font-size: px(
+										12
+									);
 								}
 							}
 						}
@@ -310,7 +325,8 @@ $designWidth: 1920;
 			color: #f56c6ca4;
 			background: white;
 			padding: px(10) px(20);
-			box-shadow: 0 0 px(10) 0 rgba(0, 0, 0, 0.03);
+			box-shadow: 0 0 px(10) 0
+				rgba(0, 0, 0, 0.03);
 			font-size: px(16);
 			border-radius: px(26);
 		}
@@ -359,7 +375,8 @@ $designWidth: 1920;
 					color: #979695;
 					font-size: px(20);
 					font-weight: 300;
-					margin: px(10) px(0) px(5) px(0);
+					margin: px(10) px(0) px(5)
+						px(0);
 				}
 			}
 		}
@@ -412,11 +429,16 @@ $designWidth: 1920;
 			flex-direction: column;
 			.projectContent {
 				display: flex;
-				border-left: 2px solid rgba(245, 108, 108, 0.643);
+				border-left: 2px solid
+					rgba(245, 108, 108, 0.643);
 				width: 100%;
 				justify-content: space-between;
 				flex-direction: column;
-				box-shadow: 0 0 px(10) 0 rgba($color: #000000, $alpha: 0.05);
+				box-shadow: 0 0 px(10) 0
+					rgba(
+						$color: #000000,
+						$alpha: 0.05
+					);
 				padding: px(10);
 				p,
 				a {
@@ -425,7 +447,12 @@ $designWidth: 1920;
 				}
 				a {
 					font-size: px(15);
-					color: rgba(245, 108, 108, 0.643);
+					color: rgba(
+						245,
+						108,
+						108,
+						0.643
+					);
 				}
 				p {
 					display: flex;

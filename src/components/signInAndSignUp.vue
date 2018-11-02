@@ -5,7 +5,11 @@
         <div class="switchSignIn" v-bind:class="{signInMode:signInMode}" v-on:click="toSignIn">登录</div>
         <div class="switchSignUp" v-bind:class="{signUpMode:signUpMode}" v-on:click="toSignUp">注册</div>
       </div>
-      <SignUp v-bind:class="{signUpMode:!signUpMode}" @switchCurrent="switchCurrent"/>
+      <SignUp
+        v-bind:class="{signUpMode:!signUpMode}"
+        @switchCurrent="switchCurrent"
+        @freeTry="freeTry"
+      />
       <SignIn v-bind:class="{signInMode:!signInMode}" @switchCurrent="switchCurrent"/>
       <div class="coverImg">
         <div class="inner">
@@ -19,14 +23,14 @@
 </template>
 
 <script>
-import logo from "../assets/logo.png";
-import SignUp from "./SignUp.vue";
-import SignIn from "./SignIn.vue";
-import coverImg5 from "../assets/img/coverImg5.jpg";
-import background from "../assets/img/background/backgroundImg.jpg";
+import logo from "../assets/logo.png"
+import SignUp from "./SignUp.vue"
+import SignIn from "./SignIn.vue"
+import coverImg5 from "../assets/img/coverImg5.jpg"
+import background from "../assets/img/background/backgroundImg.jpg"
 
-let pageWidth = window.innerWidth;
-styleTag.innerHTML = "html{font-size:" + pageWidth / 10 + "px;}";
+let pageWidth = window.innerWidth
+styleTag.innerHTML = "html{font-size:" + pageWidth / 10 + "px;}"
 
 export default {
 	props: ["currentUser"],
@@ -34,26 +38,29 @@ export default {
 		return {
 			signUpMode: false,
 			signInMode: true
-		};
+		}
 	},
 	methods: {
 		toSignUp() {
-			this.signUpMode = true;
-			this.signInMode = false;
+			this.signUpMode = true
+			this.signInMode = false
 		},
 		toSignIn() {
-			this.signUpMode = false;
-			this.signInMode = true;
+			this.signUpMode = false
+			this.signInMode = true
 		},
 		switchCurrent() {
-			this.$emit("switchCurrent");
+			this.$emit("switchCurrent")
+		},
+		freeTry() {
+			this.$emit("freeTry")
 		}
 	},
 	components: {
 		SignUp,
 		SignIn
 	}
-};
+}
 </script>
 
 <style lang="scss">
@@ -80,7 +87,8 @@ $designWidth: 1920;
 		justify-content: center;
 		align-items: center;
 		position: relative;
-		box-shadow: px(0) px(0) px(10) px(2) rgba($color: #666666, $alpha: 0.3);
+		box-shadow: px(0) px(0) px(10) px(2)
+			rgba($color: #666666, $alpha: 0.3);
 		.switchMode {
 			position: absolute;
 			top: 0;
