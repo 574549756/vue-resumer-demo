@@ -24,6 +24,9 @@
 			<el-form-item label="求职意向">
 				<el-input v-model="profile.wanted"></el-input>
 			</el-form-item>
+			<el-form-item label="在线简历链接">
+				<el-input v-model="profile.onlineResume"></el-input>
+			</el-form-item>
 			<hr class="end">
 		</el-form>
 	</div>

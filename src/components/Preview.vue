@@ -104,16 +104,19 @@
 					</section>
 				</div>
 			</div>
-			<footer class="onlineMode"></footer>
+			<footer class="onlineMode">
+				<a href="">ONLINE RESUME</a>
+			</footer>
 			<main class="main2">
 				<section class="projectDiscription" v-if="filter(resume.projects).length > 0">
 					<ul>
 						<li v-for="project in filter(resume.projects)" class="projectContent">
 							<h3>{{project.name}}</h3>
-							<p>
-								{{project.content}}
+							<p>{{project.content}}</p>
+							<h3 class="project-link">
 								<a :href="project.projectPreview">ViewDemo</a>
-							</p>
+								<a :href="project.projectCode">ViewCode</a>
+							</h3>
 						</li>
 					</ul>
 				</section>
@@ -301,12 +304,23 @@ $designWidth: 1920;
 		align-items: center;
 		width: 100%;
 		height: px(70);
+		background: #f6f6f6;
+		a {
+			font-weight: 600;
+			color: #f56c6ca4;
+			background: white;
+			padding: px(10) px(20);
+			box-shadow: 0 0 px(10) 0 rgba(0, 0, 0, 0.03);
+			font-size: px(16);
+			border-radius: px(26);
+		}
 	}
 	.main1 {
 		position: relative;
 		display: flex;
 		width: 100%;
 		height: px(260);
+		padding-top: px(15);
 		background: #f4f4f4;
 		.rectango {
 			width: px(40);
@@ -335,13 +349,16 @@ $designWidth: 1920;
 			}
 		}
 		.history {
+			margin-top: px(20);
 			.jobExperience,
 			.studyHistory {
-				color: #747474;
-				margin: px(30) px(0) px(0) px(50);
+				color: black;
+				margin: px(10) px(0) px(0) px(50);
 
 				h2 {
+					color: #979695;
 					font-size: px(20);
+					font-weight: 300;
 					margin: px(10) px(0) px(5) px(0);
 				}
 			}
@@ -355,7 +372,7 @@ $designWidth: 1920;
 
 	.header1 {
 		height: px(50);
-		background: #293d4e4b;
+		background: #293d4e17;
 		display: flex;
 		padding: px(20) px(20);
 		h1 {
@@ -394,11 +411,12 @@ $designWidth: 1920;
 			width: 100%;
 			flex-direction: column;
 			.projectContent {
-				border: 1px solid red;
 				display: flex;
 				width: 100%;
 				justify-content: space-between;
 				flex-direction: column;
+				box-shadow: 0 0 px(10) 0 rgba($color: #000000, $alpha: 0.05);
+				padding: px(10);
 				p,
 				a {
 					color: #747474;
@@ -416,7 +434,14 @@ $designWidth: 1920;
 				h3 {
 					font-size: px(20);
 					font-weight: 500;
+					margin-bottom: px(5);
 					color: #414141;
+				}
+				.project-link {
+					align-self: flex-end;
+					a {
+						margin: 0 px(5);
+					}
 				}
 			}
 		}

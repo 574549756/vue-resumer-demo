@@ -18,7 +18,8 @@ export default new Vuex.Store({
         age: "24",
         gender: "男",
         degree: "本科",
-        school: "少数民族聚居的学校"
+        school: "少数民族聚居的学校",
+        onlineResume: "www.baidu.com"
       },
       jobExperience: [
         {
