@@ -1,329 +1,425 @@
 <template>
-  <div id="preview">
-    <main class="idDiscription">
-      <div class="cover">
-        <header>
-          <h1>ex.arc.zhang@gmail.com</h1>
-        </header>
-        <h1>{{resume.profile.name || '请填写姓名'}}</h1>
-        <p>{{resume.profile.city || '请填写城市'}}| {{resume.profile.birth || '请填写出生日期'}}</p>
-        <div class="buildDate">
-          <p>创建时间</p>
-          <p>{{buildDate}}</p>
-        </div>
-      </div>
-      <footer class="footer">
-        <abilityProcess v-bind:resume="resume" />
-      </footer>
-    </main>
-    <main class="resumeDiscription">
-      <header class="header1">
-        <h1>这里是头</h1>
-      </header>
-      <div class="main1">
-        <h1 class="headerR">前端工程师</h1>
-        <section v-if="filter(resume.contacts).length > 0">
-          <main class="mainContact">
-            <h2>联系方式</h2>
-            <ul class="contactArea">
-              <div id="contactMenu">
-                <ol>
-                  <li v-for="i in [0,1,2,3,4]">
-                    <svg class="icon" aria-hidden="true">
-                      <use v-bind:xlink:href="`#icon-${contactIcon[i]}`"></use>
-                    </svg>
-                  </li>
-                </ol>
-              </div>
-              <li v-for='contact in filter(resume.contacts)'>
-                <p v-html="contact.qq || '请填写QQ'"></p>
-                <p v-html="contact.wechat || '请填写微信'"></p>
-                <p v-html="contact.phone || '请填写手机号'"></p>
-                <p v-html="contact.email || '请填写邮箱'"></p>
-                <p v-html="contact.github || '请填写GitHub地址'"></p>
-              </li>
-            </ul>
-          </main>
-        </section>
-        <section class="studyHistory" v-if="filter(resume.studyHistory).length > 0">
-          <ul>
-            <li v-for='study in filter(resume.studyHistory)'>
-              <h2>{{study.duration}}</h2>
-              <p> {{study.school}} {{study.degree}}</p>
-            </li>
-          </ul>
-        </section>
-        <section class="jobExperience" v-if="filter(resume.jobExperience).length > 0">
-          <ul>
-            <li v-for='job in filter(resume.jobExperience)'>
-              <h2>{{job.duration}}</h2>
-              <p> {{job.company}} {{job.content}}</p>
-            </li>
-          </ul>
-        </section>
-      </div>
-      <main class="main2">
-        <section class="awardDiscription" v-if="filter(resume.awards).length > 0">
-        <h2>获奖信息</h2>
-        <ul>
-          <li v-for='award in filter(resume.awards)' class="awardContent">
-            <h3>{{award.time}}</h3><p>{{award.award}}</p>
-          </li>
-        </ul>
-      </section>
-      <section class="projectDiscription" v-if="filter(resume.projects).length > 0">
-        <h2>项目信息</h2>
-        <ul>
-          <li v-for='project in filter(resume.projects)' class="projectContent">
-            <h3>{{project.name}}</h3><p>{{project.content}} <a href="project.projectPreview">ViewDemo</a></p>
-          </li>
-        </ul>
-      </section>
-      </main>
-      <footer class="footerEnd"></footer>
-    </main>
-  </div>
+	<div id="preview">
+		<main class="idDiscription">
+			<div class="cover">
+				<h2 class="emailMe">ex.arc.zhang@gmail.com</h2>
+				<section class="aboutMe">
+					<h1>{{resume.profile.name || '请填写姓名'}}</h1>
+					<span class="jobAndCity">
+						<p>{{resume.profile.city || '请填写城市'}}</p>
+						<p>{{resume.profile.birth || '请填写出生日期'}}</p>
+						<h2>{{resume.profile.wanted || '请填写求职意向'}}</h2>
+					</span>
+				</section>
+				<div class="buildDate">
+					<p>创建时间</p>
+					<p>{{buildDate}}</p>
+				</div>
+				<section v-if="filter(resume.contacts).length > 0" class="contactContainer">
+					<main class="mainContact">
+						<ul class="contactArea">
+							<ol v-for="contact in filter(resume.contacts)">
+								<li class="contactList">
+									<svg class="icon" aria-hidden="true">
+										<use v-bind:xlink:href="`#icon-qq`"></use>
+									</svg>
+									<p v-html="contact.qq || '请填写QQ'"></p>
+								</li>
+								<li class="contactList">
+									<svg class="icon" aria-hidden="true">
+										<use v-bind:xlink:href="`#icon-wechat`"></use>
+									</svg>
+									<p v-html="contact.wechat || '请填写微信'"></p>
+								</li>
+								<li class="contactList">
+									<svg class="icon" aria-hidden="true">
+										<use v-bind:xlink:href="`#icon-phone1`"></use>
+									</svg>
+									<p v-html="contact.phone || '请填写手机号'"></p>
+								</li>
+								<li class="contactList">
+									<svg class="icon" aria-hidden="true">
+										<use v-bind:xlink:href="`#icon-email`"></use>
+									</svg>
+									<p v-html="contact.email || '请填写邮箱'"></p>
+								</li>
+								<li class="contactList">
+									<svg class="icon" aria-hidden="true">
+										<use v-bind:xlink:href="`#icon-github`"></use>
+									</svg>
+									<p v-html="contact.github || '请填写GitHub地址'"></p>
+								</li>
+							</ol>
+						</ul>
+					</main>
+				</section>
+			</div>
+			<footer class="footer">
+				<abilityProcess v-bind:items="resume.skills"/>
+			</footer>
+		</main>
+		<main class="resumeDiscription">
+			<header class="header1">
+				<h1>这里是头</h1>
+			</header>
+			<div class="main1">
+				<section class="ID-completion">
+					<ul>
+						<li>
+							<p>姓名</p>
+							<p>性别</p>
+							<p>城市</p>
+							<p>出生年月</p>
+							<p>求职意向</p>
+							<p>年龄</p>
+							<p>学历</p>
+						</li>
+						<li>
+							<span>{{resume.profile.name}}</span>
+							<span>{{resume.profile.gender}}</span>
+							<span>{{resume.profile.city}}</span>
+							<span>{{resume.profile.birth}}</span>
+							<span>{{resume.profile.wanted}}</span>
+							<span>{{resume.profile.age}}</span>
+							<span>{{resume.profile.degree}}</span>
+						</li>
+					</ul>
+				</section>
+				<div class="history">
+					<section class="studyHistory" v-if="filter(resume.studyHistory).length > 0">
+						<ul>
+							<li v-for="study in filter(resume.studyHistory)">
+								<h2>{{study.duration}}</h2>
+								<p>{{study.school}} {{study.degree}}</p>
+							</li>
+						</ul>
+					</section>
+					<section class="jobExperience" v-if="filter(resume.jobExperience).length > 0">
+						<ul>
+							<li v-for="job in filter(resume.jobExperience)">
+								<h2>{{job.duration}}</h2>
+								<p>{{job.company}} {{job.content}}</p>
+							</li>
+						</ul>
+					</section>
+				</div>
+			</div>
+			<footer class="onlineMode"></footer>
+			<main class="main2">
+				<section class="projectDiscription" v-if="filter(resume.projects).length > 0">
+					<ul>
+						<li v-for="project in filter(resume.projects)" class="projectContent">
+							<h3>{{project.name}}</h3>
+							<p>
+								{{project.content}}
+								<a :href="project.projectPreview">ViewDemo</a>
+							</p>
+						</li>
+					</ul>
+				</section>
+			</main>
+			<footer class="footerEnd"></footer>
+		</main>
+	</div>
 </template>
 
 
 <style>
 #preview {
-  min-height: 100px;
-  overflow: hidden;
+	overflow: hidden;
 }
 </style>
 
 <script>
-import abilityProcess from './abilityProcess.vue'
-import coverImg5 from '../assets/img/coverImg5.jpg'
+import abilityProcess from "./abilityProcess.vue";
+import coverImg5 from "../assets/img/coverImg5.jpg";
 
-let pageWidth = window.innerWidth
-styleTag.innerHTML = 'html{font-size:' + pageWidth / 10 + 'px;}'
+let pageWidth = window.innerWidth;
+styleTag.innerHTML = "html{font-size:" + pageWidth / 10 + "px;}";
 export default {
-  data() {
-    return {
-      contactIcon: ['qq', 'wechat', 'phone1', 'email', 'github'],
-      buildDate: ''
-    }
-  },
-  created: function() {
-    var date = new Date()
-    this.buildDate = date.toLocaleDateString()
-  },
-  methods: {
-    filter(array) {
-      // 找出非空对象
-      return array.filter(item => !this.isEmpty(item))
-    },
-    isEmpty(object) {
-      // 只要有一个 value 不是 falsy ，就返回 false
-      let empty = true
-      for (let key in object) {
-        if (object[key]) {
-          empty = false
-          break
-        }
-      }
-      return empty
-    }
-  },
-  components: {
-    abilityProcess
-  },
-  computed: {
-    resume() {
-      return this.$store.state.resume
-    }
-  }
-}
+	data() {
+		return {
+			contactIcon: ["qq", "wechat", "phone1", "email", "github"],
+			buildDate: ""
+		};
+	},
+	created: function() {
+		var date = new Date();
+		this.buildDate = date.toLocaleDateString();
+	},
+	methods: {
+		filter(array) {
+			// 找出非空对象
+			return array.filter(item => !this.isEmpty(item));
+		},
+		isEmpty(object) {
+			// 只要有一个 value 不是 falsy ，就返回 false
+			let empty = true;
+			for (let key in object) {
+				if (object[key]) {
+					empty = false;
+					break;
+				}
+			}
+			return empty;
+		}
+	},
+	components: {
+		abilityProcess
+	},
+	computed: {
+		resume() {
+			return this.$store.state.resume;
+		}
+	}
+};
 </script>
 
 <style lang="scss">
 $designWidth: 1920;
 @function px($px) {
-  @return $px/$designWidth * 10 + rem;
+	@return $px/$designWidth * 10 + rem;
 }
 
 #preview {
-  width: 100%;
-  overflow: auto;
-  display: flex;
-  flex-direction: row;
-  .idDiscription {
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    background: #f8f8f8;
-    position: relative;
-    .cover {
-      background-image: url(../assets/img/coverImg5.jpg);
-      height: 73%;
-      width: 100%;
-      background-position: center center;
-      background-size: cover;
-      > .buildDate {
-        margin: px(150) px(50) px(0) px(50);
-        p {
-          color: #bebebe;
-          font-size: px(14);
-          margin: px(5) 0px;
-        }
-      }
+	width: 100%;
+	overflow: auto;
+	display: flex;
+	flex-direction: row;
+	.idDiscription {
+		width: 30%;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		background: #f8f8f8;
+		position: relative;
+		.cover {
+			background-image: url(../assets/img/coverImg5.jpg);
+			height: px(380);
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: flex-start;
+			position: relative;
+			padding: px(50);
+			width: 100%;
+			background-position: center center;
+			background-size: cover;
+			.contactContainer {
+				display: flex;
+				justify-content: flex-end;
+				align-items: flex-end;
+				.mainContact {
+					display: flex;
+					box-shadow: 0 0 30px 0 rgba(255, 255, 255, 0.2);
+					background: #2d3a4311;
+					flex-direction: column;
+					margin-left: px(10);
+					.contactArea {
+						text-align: flex-start;
+						justify-content: flex-start;
+						padding: px(20);
+						ol {
+							display: flex;
+							flex-direction: column;
+							.contactList {
+								display: flex;
+								font-display: row;
+								align-items: center;
+								justify-content: flex-start;
+								margin-top: 5px;
+								.icon {
+									width: 12px;
+									height: 12px;
+									fill: #f7f7f7;
+								}
+								p {
+									color: #f7f7f7;
+									margin: 0 px(0) px(0) px(10);
+									font-size: px(12);
+								}
+							}
+						}
+					}
+				}
+			}
+			> .buildDate {
+				position: absolute;
+				display: flex;
+				bottom: 40px;
+				right: 40px;
+				p {
+					color: #bebebe;
+					font-size: px(14);
+				}
+			}
 
-      > header {
-        h1 {
-          font-size: px(12);
-          margin: px(50) px(50) 0px px(450);
-          color: #d3d3d3;
-        }
-      }
-      h1 {
-        color: #f8f8f8;
-        margin: px(200) px(0) px(0) px(50);
-        font-size: px(64);
-        font-weight: 300;
-      }
-      p {
-        font-size: px(20);
-        color: #f8f8f8;
-        margin: px(20) px(15) px(30) px(50);
-      }
-    }
-    .footer {
-      margin: auto px(0);
-    }
-  }
-  .resumeDiscription {
-    display: flex;
-    background: white;
-    flex-direction: column;
-    position: relative;
-    .main1 {
-      position: relative;
-      width: 100%;
-      height: px(380);
-      background: #f4f4f4;
-      .rectango {
-        width: px(40);
-        height: px(40);
-        background: #000;
-      }
-      .jobExperience,
-      .studyHistory {
-        color: #747474;
-        margin: px(30) px(0) px(0) px(50);
+			.emailMe {
+				position: absolute;
+				top: px(50);
+				right: px(50);
+				font-size: px(12);
+				color: #d3d3d3;
+			}
+		}
+		.aboutMe {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-top: px(30);
+			h1 {
+				color: #f8f8f8;
+				font-size: px(70);
+				font-weight: 300;
+				margin: 0;
+			}
+			.jobAndCity {
+				p {
+					font-size: px(12);
+					color: #dddddd;
+				}
+				h2 {
+					font-size: px(24);
+					color: #dddddd;
+				}
+			}
+		}
+	}
+	.footer {
+		padding: px(30) px(50) px(20) px(50);
+		flex: 1;
+	}
+}
+.resumeDiscription {
+	display: flex;
+	background: white;
+	flex-direction: column;
+	position: relative;
+	.onlineMode {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: px(70);
+	}
+	.main1 {
+		position: relative;
+		display: flex;
+		width: 100%;
+		height: px(260);
+		background: #f4f4f4;
+		.rectango {
+			width: px(40);
+			height: px(40);
+			background: #000;
+		}
+		.ID-completion {
+			ul {
+				display: flex;
+				margin: px(30) px(40) 0 px(20);
+				li {
+					display: flex;
+					flex-direction: column;
+					font-size: px(16);
+					justify-content: flex-start;
+					margin-left: px(40);
+					p {
+						color: #979695;
+						margin: px(3) 0;
+					}
+					span {
+						margin: px(3) 0;
+						color: black;
+					}
+				}
+			}
+		}
+		.history {
+			.jobExperience,
+			.studyHistory {
+				color: #747474;
+				margin: px(30) px(0) px(0) px(50);
 
-        h2 {
-          font-size: px(20);
-          margin: px(10) px(0) px(5) px(0);
-        }
-      }
-      .headerR {
-        font-weight: 300;
-        margin: px(50) px(0) px(0) px(50);
-        font-size: px(36);
-      }
-    }
-    .mainContact {
-      display: flex;
-      position: absolute;
-      right: px(50);
-      bottom: px(-20);
-      padding: px(20);
-      height: px(235);
-      background: #2d3a43;
-      flex-direction: column;
-      h2 {
-        color: #b1b1b1;
-        font-size: px(18);
-        margin-bottom: px(25);
-      }
+				h2 {
+					font-size: px(20);
+					margin: px(10) px(0) px(5) px(0);
+				}
+			}
+		}
+		.headerR {
+			font-weight: 300;
+			margin: px(50) px(0) px(0) px(50);
+			font-size: px(36);
+		}
+	}
 
-      .contactArea {
-        display: flex;
-        flex-direction: row;
-        text-align: flex-start;
-        justify-content: flex-start;
-        p {
-          color: #b1b1b1;
-          margin: px(13) px(0) px(0) px(20);
-          font-size: px(12);
-        }
-        #contactMenu {
-          > ol {
-            li {
-              margin: px(8);
-              margin-right: 0;
-              .icon {
-                width: 15px;
-                height: 15px;
-                fill: #b1b1b1;
-              }
-            }
-          }
-        }
-      }
-    }
-    .header1 {
-      height: px(50);
-      background: #2d3a43;
-      display: flex;
-      padding: px(20) px(20);
-      h1 {
-        font-size: px(0);
-        font-weight: 300;
-        height: px(60);
-        color: white;
-      }
-    }
-    .footerEnd {
-      position: absolute;
-      bottom: 0;
-      height: px(50);
-      width: 100%;
-      background: #f4f4f4;
-    }
-  }
-  .main2 {
-    display: flex;
-    flex-direction: row;
-    background: rgb(249, 248, 250);
-    padding: px(40) px(30) px(0) px(30);
-    .projectDiscription,
-    .awardDiscription {
-      width: 100%;
-      padding: 0 px(20);
-      > h2 {
-        font-size: px(30);
-        font-weight: 300;
-        margin-bottom: px(20);
-      }
-      .projectContent,
-      .awardContent {
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        p,
-        a,
-        h3 {
-          color: #747474;
-          font-size: px(15);
-        }
-        a {
-          color: rgba(245, 108, 108, 0.643);
-        }
-        p {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-        h3 {
-          margin: px(8) 0;
-          font-weight: 500;
-          color: #414141;
-        }
-      }
-    }
-  }
+	.header1 {
+		height: px(50);
+		background: #293d4e4b;
+		display: flex;
+		padding: px(20) px(20);
+		h1 {
+			font-size: px(0);
+			font-weight: 300;
+			height: px(60);
+			color: white;
+		}
+	}
+	.footerEnd {
+		position: absolute;
+		bottom: 0;
+		height: px(50);
+		width: 100%;
+		background: #f4f4f4;
+	}
+}
+.main2 {
+	display: flex;
+	flex-direction: row;
+	background: rgb(249, 248, 250);
+	padding: px(40) px(30) px(0) px(30);
+	.projectDiscription {
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-start;
+		width: 100%;
+		padding: 0 px(20);
+		> h2 {
+			font-size: px(30);
+			font-weight: 300;
+			margin-bottom: px(20);
+		}
+		ul {
+			display: flex;
+			width: 100%;
+			flex-direction: column;
+			.projectContent {
+				border: 1px solid red;
+				display: flex;
+				width: 100%;
+				justify-content: space-between;
+				flex-direction: column;
+				p,
+				a {
+					color: #747474;
+					font-size: px(12);
+				}
+				a {
+					font-size: px(15);
+					color: rgba(245, 108, 108, 0.643);
+				}
+				p {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+				}
+				h3 {
+					font-size: px(20);
+					font-weight: 500;
+					color: #414141;
+				}
+			}
+		}
+	}
 }
 </style>
