@@ -88,6 +88,9 @@ $designWidth: 1920;
 
 		.el-row {
 			margin-right: px(40);
+			.el-button {
+				padding: px(12) px(20);
+			}
 			.el-button--primary {
 				width: px(120);
 				height: px(40);

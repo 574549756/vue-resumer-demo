@@ -1,25 +1,21 @@
 <template>
-  <div id="dialog">
-    <div class="signUpCard">
-      <div class="switchMode">
-        <div class="switchSignIn" v-bind:class="{signInMode:signInMode}" v-on:click="toSignIn">登录</div>
-        <div class="switchSignUp" v-bind:class="{signUpMode:signUpMode}" v-on:click="toSignUp">注册</div>
-      </div>
-      <SignUp
-        v-bind:class="{signUpMode:!signUpMode}"
-        @switchCurrent="switchCurrent"
-        @freeTry="freeTry"
-      />
-      <SignIn v-bind:class="{signInMode:!signInMode}" @switchCurrent="switchCurrent"/>
-      <div class="coverImg">
-        <div class="inner">
-          <div class="logomask"></div>
-          <h1>Powered By Vue</h1>
-          <img class="vueLogo" src="../assets/logo.png" alt="">
-        </div>
-      </div>
-    </div>
-  </div>
+	<div id="dialog">
+		<div class="signUpCard">
+			<div class="switchMode">
+				<div class="switchSignIn" v-bind:class="{signInMode:signInMode}" v-on:click="toSignIn">登录</div>
+				<div class="switchSignUp" v-bind:class="{signUpMode:signUpMode}" v-on:click="toSignUp">注册</div>
+			</div>
+			<SignUp v-bind:class="{signUpMode:!signUpMode}" @switchCurrent="switchCurrent"/>
+			<SignIn v-bind:class="{signInMode:!signInMode}" @switchCurrent="switchCurrent"/>
+			<div class="coverImg">
+				<div class="inner">
+					<div class="logomask"></div>
+					<h1>Powered By Vue</h1>
+					<img class="vueLogo" src="../assets/logo.png" alt="">
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -30,6 +26,7 @@ import coverImg5 from "../assets/img/coverImg5.jpg"
 import background from "../assets/img/background/backgroundImg.jpg"
 
 let pageWidth = window.innerWidth
+import store from "../store/index"
 styleTag.innerHTML = "html{font-size:" + pageWidth / 10 + "px;}"
 
 export default {
@@ -49,11 +46,29 @@ export default {
 			this.signUpMode = false
 			this.signInMode = true
 		},
-		switchCurrent() {
-			this.$emit("switchCurrent")
+		getCurrentUser: function() {
+			let current = AV.User.current()
+			if (current) {
+				let {
+					id,
+					createdAt,
+					attributes: { username }
+				} = current
+				return { id, username, createdAt }
+			} else {
+				return null
+			}
 		},
-		freeTry() {
-			this.$emit("freeTry")
+		switchCurrent: function() {
+			this.mode.currentUser = this.getCurrentUser()
+		}
+	},
+	computed: {
+		resume() {
+			return this.$store.state.resume
+		},
+		mode() {
+			return this.$store.state.mode
 		}
 	},
 	components: {
