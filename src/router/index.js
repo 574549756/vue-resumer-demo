@@ -2,18 +2,18 @@ import Vue from "vue"
 import Router from "vue-router"
 import store from "../store/index"
 import home from "../App.vue"
-import signInAndSignUp from "../components/signInAndSignUp"
+import signInAndSignUp from "../signInAndSignUp"
 
 Vue.use(Router)
 
 const router = new Router({
   routes: [
     {
-      path: "/login",
+      path: "/",
       component: home
     },
     {
-      path: "/",
+      path: "/login",
       component: signInAndSignUp
     }
   ]

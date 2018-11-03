@@ -2,9 +2,13 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from "vue"
 import VueRouter from "vue-router"
+import VueResource from "vue-resource"
 import App from "./App"
+import signInAndSignUp from "./signInAndSignUp"
 import "normalize.css"
 import "./assets/reset.scss"
+
+Vue.use(VueResource)
 
 import ElementUI from "element-ui"
 import "element-ui/lib/theme-chalk/index.css"

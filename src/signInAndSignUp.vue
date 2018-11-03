@@ -11,7 +11,7 @@
 				<div class="inner">
 					<div class="logomask"></div>
 					<h1>Powered By Vue</h1>
-					<img class="vueLogo" src="../assets/logo.png" alt="">
+					<img class="vueLogo" src="./assets/logo.png" alt="">
 				</div>
 			</div>
 		</div>
@@ -19,14 +19,14 @@
 </template>
 
 <script>
-import logo from "../assets/logo.png"
-import SignUp from "./SignUp.vue"
-import SignIn from "./SignIn.vue"
-import coverImg5 from "../assets/img/coverImg5.jpg"
-import background from "../assets/img/background/backgroundImg.jpg"
+import logo from "./assets/logo.png"
+import SignUp from "./components/SignUp.vue"
+import SignIn from "./components/SignIn.vue"
+import store from "./store/index"
+import coverImg5 from "./assets/img/coverImg5.jpg"
+import background from "./assets/img/background/backgroundImg.jpg"
 
 let pageWidth = window.innerWidth
-import store from "../store/index"
 styleTag.innerHTML = "html{font-size:" + pageWidth / 10 + "px;}"
 
 export default {
@@ -86,7 +86,7 @@ $designWidth: 1920;
 
 #dialog {
 	z-index: 40;
-	background-image: url(../assets/img/background/backgroundImg.jpg);
+	background-image: url(./assets/img/background/backgroundImg.jpg);
 	background-position: center center;
 	background-size: cover;
 	position: absolute;
@@ -146,7 +146,7 @@ $designWidth: 1920;
 		.coverImg {
 			width: px(650);
 			height: px(700);
-			background-image: url(../assets/img/coverImg5.jpg);
+			background-image: url(./assets/img/coverImg5.jpg);
 			background-position: center center;
 			background-size: cover;
 			display: flex;

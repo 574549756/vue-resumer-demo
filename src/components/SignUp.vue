@@ -200,9 +200,6 @@ $designWidth: 1920;
 				color: #787878;
 				border-color: #ececec;
 			}
-			.el-input__suffix {
-				padding: px(24) px(6) px(0) px(0);
-			}
 
 			.el-input__inner {
 				border-radius: 0;

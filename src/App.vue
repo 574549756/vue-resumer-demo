@@ -1,6 +1,5 @@
 <template>
 	<div id="app" v-bind:class="{previewMode:mode.previewMode}">
-		<signInAndSignUp class="signInAndSignUp" v-if="mode.currentUser===null"/>
 		<Topbar class="topbar" v-on:preview="preview" :currentUser="mode.currentUser"/>
 		<main>
 			<Editor class="editor"/>
@@ -11,7 +10,6 @@
 </template>
 
 <script>
-import signInAndSignUp from "./components/signInAndSignUp"
 import Topbar from "./components/Topbar"
 import Preview from "./components/Preview"
 import Editor from "./components/Editor"
@@ -62,8 +60,7 @@ export default {
 	components: {
 		Topbar,
 		Preview,
-		Editor,
-		signInAndSignUp
+		Editor
 	}
 }
 </script>

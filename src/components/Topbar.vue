@@ -12,13 +12,13 @@
 			</section>
 		</div>
 		<div class="actions">
-			<div class="aboutUser">
+			<div class="aboutUser" v-if="currentUser">
 				<p>欢迎回来</p>
-				<span v-if="currentUser">{{currentUser.username}}</span>
+				<span>{{currentUser.username}}</span>
 			</div>
 			<el-row>
-				<el-button v-if="!currentUser&&freeTryMode===true">注册</el-button>
-				<el-button v-if="!currentUser&&freeTryMode===true">登录</el-button>
+				<el-button v-if="!currentUser">注册</el-button>
+				<el-button v-if="!currentUser">登录</el-button>
 				<el-button v-on:click="logout" v-if="currentUser">登出</el-button>
 				<el-button v-on:click="preview" type="primary">预览</el-button>
 			</el-row>
