@@ -12,8 +12,10 @@
 			</section>
 		</div>
 		<div class="actions">
-			<p>欢迎回来!</p>
-			<span>{{currentUser.username}}</span>
+			<div class="aboutUser">
+				<p>欢迎回来</p>
+				<span v-if="currentUser">{{currentUser.username}}</span>
+			</div>
 			<el-row>
 				<el-button v-if="!currentUser&&freeTryMode===true">注册</el-button>
 				<el-button v-if="!currentUser&&freeTryMode===true">登录</el-button>
@@ -66,6 +68,24 @@ $designWidth: 1920;
 		align-items: center;
 		justify-content: center;
 		height: px(80);
+		.aboutUser {
+			display: flex;
+			margin: 0 px(11);
+			border: 1px solid #c7c7c7;
+			padding: px(11);
+			border-radius: px(5);
+			background: white;
+			> p {
+				font-size: px(12);
+				color: #979695;
+				margin-right: px(15);
+			}
+			> span {
+				font-size: px(12);
+				color: #979695;
+			}
+		}
+
 		.el-row {
 			margin-right: px(40);
 			.el-button--primary {
