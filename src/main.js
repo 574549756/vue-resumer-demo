@@ -1,21 +1,22 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-import App from './App'
-import 'normalize.css'
-import './assets/reset.scss'
+import Vue from "vue"
+import VueRouter from "vue-router"
+import App from "./App"
+import "normalize.css"
+import "./assets/reset.scss"
 
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-import { METHODS } from 'http'
-
+import ElementUI from "element-ui"
+import "element-ui/lib/theme-chalk/index.css"
+import { METHODS } from "http"
+Vue.use(VueRouter)
 Vue.use(ElementUI)
 
 Vue.config.productionTip = false
 
 var { Query, User } = AV
-var APP_ID = 'W7NHdPc1bCQFxkcowluIBfh0-gzGzoHsz'
-var APP_KEY = 'iQkUHnRBIL7fkX9F900aYfJz'
+var APP_ID = "W7NHdPc1bCQFxkcowluIBfh0-gzGzoHsz"
+var APP_KEY = "iQkUHnRBIL7fkX9F900aYfJz"
 
 AV.init({
   appId: APP_ID,
@@ -24,10 +25,10 @@ AV.init({
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
+  el: "#app",
   data: {
-    actionType: 'signUp'
+    actionType: "signUp"
   },
   components: { App },
-  template: '<App/>',
+  template: "<App/>"
 })
