@@ -62,6 +62,10 @@ export default {
 		},
 		switchCurrent: function() {
 			this.mode.currentUser = this.getCurrentUser()
+			if (this.mode.currentUser) {
+				let value = AV.User.current().get("userData")
+				return this.$store.commit("getUserData", value)
+			}
 			this.mode.freeTryMode = false
 		},
 		freeTry: function() {

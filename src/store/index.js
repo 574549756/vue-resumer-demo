@@ -5,6 +5,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    toast: {
+      toastMsg: "",
+      toastState: false
+    },
     mode: {
       freeTryMode: false,
       currentUser: null,

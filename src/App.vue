@@ -1,6 +1,8 @@
 <template>
 	<div id="app" v-bind:class="{previewMode:mode.previewMode}">
-		<signInAndSignUp v-if="!mode.currentUser && !mode.freeTryMode"/>
+		<transition name="fade">
+			<signInAndSignUp v-if="!mode.currentUser && !mode.freeTryMode"/>
+		</transition>
 		<Topbar
 			class="topbar"
 			v-on:preview="preview"
@@ -13,6 +15,9 @@
 			<Preview v-bind:resume="resume" class="preview"/>
 		</main>
 		<el-button id="exitPreview" v-on:click="exitPreview">退出预览</el-button>
+		<transition name="fade">
+			<toast :toastData="toastData" v-if="toastData.toastState"/>
+		</transition>
 	</div>
 </template>
 
@@ -22,6 +27,7 @@ import Preview from "./components/Preview"
 import Editor from "./components/Editor"
 import store from "./store/index"
 import signInAndSignUp from "./signInAndSignUp"
+import toast from "./components/toast"
 
 // 自适应
 let pageWidth = window.innerWidth
@@ -32,7 +38,6 @@ export default {
 		return {}
 	},
 	created: function() {
-		console.log("最开始执行了")
 		this.mode.currentUser = this.getCurrentUser()
 		if (this.mode.currentUser) {
 			let value = AV.User.current().get("userData")
@@ -59,18 +64,30 @@ export default {
 				return null
 			}
 		},
+		displayToast: function() {
+			this.toastData.toastState = true
+			setTimeout(() => {
+				this.toastData.toastState = false
+			}, 3000)
+		},
 		save: function() {
 			if (this.mode.currentUser) {
 				let current = AV.User.current()
 				current.set("userData", this.resume)
 				current.save()
-				console.log("保存成功")
+				this.toastData.toastMsg = "保存成功"
+				this.displayToast()
 			} else {
+				this.toastData.toastMsg = "保存失败，请先登录。"
+				this.displayToast()
 			}
 		}
 	},
 	store,
 	computed: {
+		toastData() {
+			return this.$store.state.toast
+		},
 		set() {},
 		resume() {
 			return this.$store.state.resume
@@ -83,7 +100,8 @@ export default {
 		Topbar,
 		Preview,
 		Editor,
-		signInAndSignUp
+		signInAndSignUp,
+		toast
 	}
 }
 </script>
@@ -112,6 +130,10 @@ body {
 	fill: white;
 	flex-direction: column;
 	overflow: hidden;
+	position: relative;
+	.toast {
+		transition: all 0.3s linear;
+	}
 }
 
 #exitPreview {
@@ -123,6 +145,14 @@ body {
 	z-index: 1;
 }
 
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+	opacity: 0;
+}
 main {
 	display: flex;
 	flex: 1;
