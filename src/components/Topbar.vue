@@ -17,8 +17,8 @@
 				<span>{{currentUser.username}}</span>
 			</div>
 			<el-row>
-				<el-button v-if="!currentUser">注册</el-button>
-				<el-button v-if="!currentUser">登录</el-button>
+				<el-button v-if="!currentUser" v-on:click="signUp">注册</el-button>
+				<el-button v-if="!currentUser" v-on:click="signIn">登录</el-button>
 				<el-button v-on:click="logout" v-if="currentUser">登出</el-button>
 				<el-button v-on:click="preview" type="primary">预览</el-button>
 			</el-row>
@@ -28,11 +28,9 @@
 
 <script>
 export default {
-	props: ["currentUser"],
+	props: ["currentUser", "mode"],
 	data() {
-		return {
-			freeTryMode: false
-		}
+		return {}
 	},
 	methods: {
 		preview() {
@@ -40,10 +38,17 @@ export default {
 		},
 		logout: function() {
 			AV.User.logOut()
-			this.freeTryMode = false
+			this.mode.freeTryMode = false
 			this.currentUser = null
 			window.location.reload()
-		}
+		},
+		signIn: function() {
+			this.mode.freeTryMode = false
+			this.mode.
+			this.currentUser = null
+			window.location.reload()
+		},
+		
 	}
 }
 </script>

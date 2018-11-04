@@ -1,35 +1,35 @@
 <template>
-  <div class="dialogBoard">
-    <header class="mainTitle">
-      <h1 class="head1">留下</h1>
-      <h1 class="head2">您的足迹</h1>
-    </header>
-    <h2 class="titleDiscription">注册以储存您的简历数据</h2>
-    <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" class="demo-ruleForm">
-      <el-form-item label="邮箱" prop="email">
-        <el-input v-model.email="ruleForm2.email"></el-input>
-      </el-form-item>
-      <el-form-item label="密码" prop="pass">
-        <el-input type="password" v-model="ruleForm2.pass" autocomplete="off"></el-input>
-      </el-form-item>
-      <el-form-item label="确认密码" prop="checkPass">
-        <el-input type="password" v-model="ruleForm2.checkPass" autocomplete="off"></el-input>
-      </el-form-item>
-      <div class="underLogin">
-        <el-checkbox v-model="checked">确认信息</el-checkbox>
-        <a href="javascript:void(0)" class="freeTry">免注册试用?</a>
-      </div>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm2')">注册</el-button>
-        <el-button @click="resetForm('ruleForm2')">重置</el-button>
-      </el-form-item>
-    </el-form>
-  </div>
+	<div class="dialogBoard">
+		<header class="mainTitle">
+			<h1 class="head1">留下</h1>
+			<h1 class="head2">您的足迹</h1>
+		</header>
+		<h2 class="titleDiscription">注册以储存您的简历数据</h2>
+		<el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" class="demo-ruleForm">
+			<el-form-item label="邮箱" prop="email">
+				<el-input v-model.email="ruleForm2.email"></el-input>
+			</el-form-item>
+			<el-form-item label="密码" prop="pass">
+				<el-input type="password" v-model="ruleForm2.pass" autocomplete="off"></el-input>
+			</el-form-item>
+			<el-form-item label="确认密码" prop="checkPass">
+				<el-input type="password" v-model="ruleForm2.checkPass" autocomplete="off"></el-input>
+			</el-form-item>
+			<div class="underLogin">
+				<el-checkbox v-model="checked">确认信息</el-checkbox>
+				<a href="javascript:void(0)" class="freeTry" @click="freeTry()">免注册试用?</a>
+			</div>
+			<el-form-item>
+				<el-button type="primary" @click="submitForm('ruleForm2')">注册</el-button>
+				<el-button @click="resetForm('ruleForm2')">重置</el-button>
+			</el-form-item>
+		</el-form>
+	</div>
 </template>
 
 <script>
 export default {
-	props: ["currentUser"],
+	props: ["currentUser", "freeTryMode"],
 	data() {
 		var checkEmail = (rule, value, callback) => {
 			if (!value) {
@@ -105,6 +105,9 @@ export default {
 		},
 		resetForm(formName) {
 			this.$refs[formName].resetFields()
+		},
+		freeTry() {
+			this.$emit("freeTry")
 		}
 	}
 }

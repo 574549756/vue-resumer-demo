@@ -15,6 +15,10 @@ const router = new Router({
     {
       path: "/login",
       component: signInAndSignUp
+    },
+    {
+      path: "/freeTry",
+      component: signInAndSignUp
     }
   ]
 })

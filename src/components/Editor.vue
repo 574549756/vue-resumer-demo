@@ -11,6 +11,11 @@
 						<use v-bind:xlink:href="`#icon-${icons[i]}`"></use>
 					</svg>
 				</li>
+				<li class="save" v-click="saveData">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-save"></use>
+					</svg>
+				</li>
 			</ol>
 		</nav>
 		<ol class="panes">
@@ -85,6 +90,14 @@ export default {
 		},
 		resume() {
 			return this.$store.state.resume
+		},
+		mode() {
+			return this.$store.state.mode
+		}
+	},
+	methods: {
+		saveData() {
+			this.$emit("save")
 		}
 	}
 }
@@ -107,6 +120,16 @@ $designWidth: 1920;
 		width: px(80);
 		padding-top: px(32);
 		> ol {
+			flex: 1;
+			display: flex;
+			position: relative;
+			flex-direction: column;
+			height: 100%;
+			.save {
+				position: absolute;
+				bottom: 0;
+				padding: px(5) px(15);
+			}
 			.icon {
 				width: px(30);
 				height: px(30);
@@ -114,6 +137,7 @@ $designWidth: 1920;
 				overflow: hidden;
 				margin: px(25) px(10);
 			}
+
 			:nth-child(1) {
 				.icon {
 					width: px(35);

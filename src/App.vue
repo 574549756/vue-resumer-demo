@@ -1,8 +1,15 @@
 <template>
 	<div id="app" v-bind:class="{previewMode:mode.previewMode}">
-		<Topbar class="topbar" v-on:preview="preview" :currentUser="mode.currentUser"/>
-		<main>
-			<Editor class="editor"/>
+		<signInAndSignUp v-if="!mode.currentUser && !mode.freeTryMode"/>
+		<Topbar
+			class="topbar"
+			v-on:preview="preview"
+			:currentUser="mode.currentUser"
+			:mode="mode"
+			v-if="mode.currentUser || mode.freeTryMode"
+		/>
+		<main v-if="mode.currentUser || mode.freeTryMode">
+			<Editor class="editor" v-on:save="save"/>
 			<Preview v-bind:resume="resume" class="preview"/>
 		</main>
 		<el-button id="exitPreview" v-on:click="exitPreview">退出预览</el-button>
@@ -14,6 +21,7 @@ import Topbar from "./components/Topbar"
 import Preview from "./components/Preview"
 import Editor from "./components/Editor"
 import store from "./store/index"
+import signInAndSignUp from "./signInAndSignUp"
 
 // 自适应
 let pageWidth = window.innerWidth
@@ -46,6 +54,11 @@ export default {
 			} else {
 				return null
 			}
+		},
+		save: function() {
+			if (mode.currentUser) {
+			} else {
+			}
 		}
 	},
 	store,
@@ -60,7 +73,8 @@ export default {
 	components: {
 		Topbar,
 		Preview,
-		Editor
+		Editor,
+		signInAndSignUp
 	}
 }
 </script>
