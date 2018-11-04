@@ -111,12 +111,14 @@
 				<section class="projectDiscription" v-if="filter(resume.projects).length > 0">
 					<ul>
 						<li v-for="project in filter(resume.projects)" class="projectContent">
-							<h3>{{project.name}}</h3>
+							<span>
+								<h3>{{project.name}}</h3>
+								<h3 class="project-link">
+									<a :href="project.projectPreview">ViewDemo</a>
+									<a :href="project.projectCode">ViewCode</a>
+								</h3>
+							</span>
 							<p>{{project.content}}</p>
-							<h3 class="project-link">
-								<a :href="project.projectPreview">ViewDemo</a>
-								<a :href="project.projectCode">ViewCode</a>
-							</h3>
 						</li>
 					</ul>
 				</section>
@@ -137,9 +139,6 @@
 import abilityProcess from "./abilityProcess.vue"
 import coverImg5 from "../assets/img/coverImg5.jpg"
 
-let pageWidth = window.innerWidth
-styleTag.innerHTML =
-	"html{font-size:" + pageWidth / 10 + "px;}"
 export default {
 	data() {
 		return {
@@ -160,9 +159,7 @@ export default {
 	methods: {
 		filter(array) {
 			// 找出非空对象
-			return array.filter(
-				item => !this.isEmpty(item)
-			)
+			return array.filter(item => !this.isEmpty(item))
 		},
 		isEmpty(object) {
 			// 只要有一个 value 不是 falsy ，就返回 false
@@ -207,7 +204,7 @@ $designWidth: 1920;
 		position: relative;
 		.cover {
 			background-image: url(../assets/img/coverImg5.jpg);
-			height: px(380);
+			min-height: px(380);
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
@@ -223,8 +220,7 @@ $designWidth: 1920;
 				align-items: flex-end;
 				.mainContact {
 					display: flex;
-					box-shadow: 0 0 30px 0
-						rgba(255, 255, 255, 0.2);
+					box-shadow: 0 0 30px 0 rgba(255, 255, 255, 0.2);
 					background: #2d3a4311;
 					flex-direction: column;
 					margin-left: px(10);
@@ -248,13 +244,8 @@ $designWidth: 1920;
 								}
 								p {
 									color: #f7f7f7;
-									margin: 0
-										px(0)
-										px(0)
-										px(10);
-									font-size: px(
-										12
-									);
+									margin: 0 px(0) px(0) px(10);
+									font-size: px(12);
 								}
 							}
 						}
@@ -325,8 +316,7 @@ $designWidth: 1920;
 			color: #f56c6ca4;
 			background: white;
 			padding: px(10) px(20);
-			box-shadow: 0 0 px(10) 0
-				rgba(0, 0, 0, 0.03);
+			box-shadow: 0 0 px(10) 0 rgba(0, 0, 0, 0.03);
 			font-size: px(16);
 			border-radius: px(26);
 		}
@@ -375,8 +365,7 @@ $designWidth: 1920;
 					color: #979695;
 					font-size: px(20);
 					font-weight: 300;
-					margin: px(10) px(0) px(5)
-						px(0);
+					margin: px(10) px(0) px(5) px(0);
 				}
 			}
 		}
@@ -411,7 +400,7 @@ $designWidth: 1920;
 	display: flex;
 	flex-direction: row;
 	background: rgb(249, 248, 250);
-	padding: px(40) px(30) px(0) px(30);
+	padding: px(30) px(30) px(0) px(30);
 	.projectDiscription {
 		display: flex;
 		justify-content: flex-start;
@@ -429,17 +418,19 @@ $designWidth: 1920;
 			flex-direction: column;
 			.projectContent {
 				display: flex;
-				border-left: 2px solid
-					rgba(245, 108, 108, 0.643);
+				border-left: 2px solid rgba(245, 108, 108, 0.643);
 				width: 100%;
+				margin: px(10) 0;
 				justify-content: space-between;
 				flex-direction: column;
 				box-shadow: 0 0 px(10) 0
-					rgba(
-						$color: #000000,
-						$alpha: 0.05
-					);
+					rgba($color: #000000, $alpha: 0.05);
 				padding: px(10);
+				span {
+					display: flex;
+					margin-bottom: px(5);
+					justify-content: space-between;
+				}
 				p,
 				a {
 					color: #747474;
@@ -447,12 +438,7 @@ $designWidth: 1920;
 				}
 				a {
 					font-size: px(15);
-					color: rgba(
-						245,
-						108,
-						108,
-						0.643
-					);
+					color: rgba(245, 108, 108, 0.643);
 				}
 				p {
 					display: flex;
@@ -462,7 +448,6 @@ $designWidth: 1920;
 				h3 {
 					font-size: px(20);
 					font-weight: 500;
-					margin-bottom: px(5);
 					color: #414141;
 				}
 				.project-link {

@@ -8,7 +8,6 @@
 					<el-input v-model="work.abilityName"></el-input>
 				</el-form-item>
 				<div class="block">
-					<h3>技能熟练度</h3>
 					<el-slider v-model="work.abilityProcess" type="number" :step="5"></el-slider>
 				</div>
 				<el-form-item label="技能描述">
@@ -27,23 +26,23 @@ export default {
 	props: ["items", "title"],
 	computed: {
 		keys() {
-			console.log("调用keys");
-			return Object.keys(this.items[0]);
+			console.log("调用keys")
+			return Object.keys(this.items[0])
 		}
 	},
 	methods: {
 		addJobExperience() {
-			const empty = {};
+			const empty = {}
 			this.keys.map(key => {
-				empty[key] = 20;
-			});
-			this.items.push(empty);
+				empty[key] = 20
+			})
+			this.items.push(empty)
 		},
 		removeJobExperience(index) {
-			this.items.splice(index, 1);
+			this.items.splice(index, 1)
 		}
 	}
-};
+}
 </script>
 
 <style lang="scss">

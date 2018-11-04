@@ -34,6 +34,10 @@ export default {
 	created: function() {
 		console.log("最开始执行了")
 		this.mode.currentUser = this.getCurrentUser()
+		if (this.mode.currentUser) {
+			let value = AV.User.current().get("userData")
+			return this.$store.commit("getUserData", value)
+		}
 	},
 	methods: {
 		preview() {
@@ -56,13 +60,18 @@ export default {
 			}
 		},
 		save: function() {
-			if (mode.currentUser) {
+			if (this.mode.currentUser) {
+				let current = AV.User.current()
+				current.set("userData", this.resume)
+				current.save()
+				console.log("保存成功")
 			} else {
 			}
 		}
 	},
 	store,
 	computed: {
+		set() {},
 		resume() {
 			return this.$store.state.resume
 		},
@@ -89,7 +98,6 @@ html,
 body,
 #app {
 	height: 100%;
-	overflow: hidden;
 }
 
 body {
@@ -103,6 +111,7 @@ body {
 	display: flex;
 	fill: white;
 	flex-direction: column;
+	overflow: hidden;
 }
 
 #exitPreview {
@@ -130,7 +139,8 @@ main {
 	}
 }
 
-.previewMode {
+#app.previewMode {
+	overflow: auto;
 	> #topbar {
 		display: none;
 	}
@@ -138,8 +148,8 @@ main {
 		display: none;
 	}
 	#preview {
-		max-width: px(1650);
-		max-height: px(1200);
+		overflow: auto;
+		max-width: px(1500);
 		height: 100%;
 		margin: auto auto;
 		position: relative;

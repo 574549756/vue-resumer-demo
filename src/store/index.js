@@ -1,14 +1,16 @@
-import Vuex from "vuex";
-import Vue from "vue";
+import Vuex from "vuex"
+import Vue from "vue"
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     mode: {
       freeTryMode: false,
       currentUser: null,
-      previewMode: false
+      previewMode: false,
+      signUpMode: false,
+      signInMode: true
     },
     selected: "profile",
     currentTab: 0,
@@ -32,7 +34,11 @@ export default new Vuex.Store({
         }
       ],
       studyHistory: [
-        { school: "少数民族聚居的大学", duration: "2012~2016", degree: "本科" }
+        {
+          school: "少数民族聚居的大学",
+          duration: "2012~2016",
+          degree: "本科"
+        }
       ],
       projects: [
         {
@@ -64,16 +70,19 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    getUserData(state, payload) {
+      state.resume = payload
+    },
     initState(state, payload) {
-      Object.assign(state, payload);
+      Object.assign(state, payload)
     },
     switchTab(state, payload) {
-      state.selected = payload;
-      localStorage.setItem("state", JSON.stringify(state));
+      state.selected = payload
+      localStorage.setItem("state", JSON.stringify(state))
     },
     updateResume(state, { path, value }) {
-      objectPath.set(state.resume, path, value);
-      localStorage.setItem("state", JSON.stringify(state));
+      objectPath.set(state.resume, path, value)
+      localStorage.setItem("state", JSON.stringify(state))
     }
   }
-});
+})

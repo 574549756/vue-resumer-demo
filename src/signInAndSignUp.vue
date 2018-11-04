@@ -2,15 +2,15 @@
 	<div id="dialog">
 		<div class="signUpCard">
 			<div class="switchMode">
-				<div class="switchSignIn" v-bind:class="{signInMode:signInMode}" v-on:click="toSignIn">登录</div>
-				<div class="switchSignUp" v-bind:class="{signUpMode:signUpMode}" v-on:click="toSignUp">注册</div>
+				<div class="switchSignIn" v-bind:class="{signInMode:mode.signInMode}" v-on:click="toSignIn">登录</div>
+				<div class="switchSignUp" v-bind:class="{signUpMode:mode.signUpMode}" v-on:click="toSignUp">注册</div>
 			</div>
 			<SignUp
-				v-bind:class="{signUpMode:!signUpMode}"
+				v-bind:class="{signUpMode:!mode.signUpMode}"
 				@switchCurrent="switchCurrent"
 				@freeTry="freeTry"
 			/>
-			<SignIn v-bind:class="{signInMode:!signInMode}" @switchCurrent="switchCurrent"/>
+			<SignIn v-bind:class="{signInMode:!mode.signInMode}" @switchCurrent="switchCurrent"/>
 			<div class="coverImg">
 				<div class="inner">
 					<div class="logomask"></div>
@@ -36,19 +36,16 @@ styleTag.innerHTML = "html{font-size:" + pageWidth / 10 + "px;}"
 export default {
 	props: ["currentUser", "freeTryMode"],
 	data() {
-		return {
-			signUpMode: false,
-			signInMode: true
-		}
+		return {}
 	},
 	methods: {
 		toSignUp() {
-			this.signUpMode = true
-			this.signInMode = false
+			this.mode.signUpMode = true
+			this.mode.signInMode = false
 		},
 		toSignIn() {
-			this.signUpMode = false
-			this.signInMode = true
+			this.mode.signUpMode = false
+			this.mode.signInMode = true
 		},
 		getCurrentUser: function() {
 			let current = AV.User.current()

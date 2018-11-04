@@ -11,7 +11,7 @@
 						<use v-bind:xlink:href="`#icon-${icons[i]}`"></use>
 					</svg>
 				</li>
-				<li class="save" v-click="saveData">
+				<li class="save" v-on:click="saveData()">
 					<svg class="icon" aria-hidden="true">
 						<use xlink:href="#icon-save"></use>
 					</svg>
@@ -61,6 +61,7 @@
 import profileEditor from "./profileEditor.vue"
 import ArrayEditor from "./ArrayEditor.vue"
 import AbilityArrayEditor from "./AbilityArrayEditor"
+import store from "../store/index"
 
 export default {
 	data() {
@@ -129,6 +130,7 @@ $designWidth: 1920;
 				position: absolute;
 				bottom: 0;
 				padding: px(5) px(15);
+				cursor: pointer;
 			}
 			.icon {
 				width: px(30);

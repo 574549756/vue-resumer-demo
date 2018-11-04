@@ -5,7 +5,7 @@
 				<div class="header">
 					<el-progress
 						:percentage="toNumber(item.abilityProcess)"
-						:width="50"
+						:width="processWidth()"
 						type="circle"
 						color="#f56c6ca4"
 					></el-progress>
@@ -22,7 +22,14 @@
 <script>
 export default {
 	props: ["items"],
+	data() {
+		return {}
+	},
 	methods: {
+		processWidth() {
+			let font = window.innerWidth
+			return (5 / 192) * font
+		},
 		toNumber(xxx) {
 			return xxx + 0
 		}
@@ -57,6 +64,7 @@ $designWidth: 1920;
 				background: none;
 				margin-left: px(15);
 				span {
+					margin-bottom: px(5);
 					font-size: px(20);
 				}
 				p {

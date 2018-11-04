@@ -44,11 +44,16 @@ export default {
 		},
 		signIn: function() {
 			this.mode.freeTryMode = false
-			this.mode.
 			this.currentUser = null
-			window.location.reload()
+			this.mode.signUpMode = false
+			this.mode.signInMode = true
 		},
-		
+		signUp: function() {
+			this.mode.freeTryMode = false
+			this.currentUser = null
+			this.mode.signUpMode = true
+			this.mode.signInMode = false
+		}
 	}
 }
 </script>
