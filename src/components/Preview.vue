@@ -1,131 +1,131 @@
 <template>
-	<div id="preview">
-		<main class="idDiscription">
-			<div class="cover">
-				<h2 class="emailMe">ex.arc.zhang@gmail.com</h2>
-				<section class="aboutMe">
-					<h1>{{resume.profile.name || '请填写姓名'}}</h1>
-					<span class="jobAndCity">
-						<p>{{resume.profile.city || '请填写城市'}}</p>
-						<p>{{resume.profile.birth || '请填写出生日期'}}</p>
-						<h2>{{resume.profile.wanted || '请填写求职意向'}}</h2>
-					</span>
-				</section>
-				<div class="buildDate">
-					<p>创建时间</p>
-					<p>{{buildDate}}</p>
-				</div>
-				<section v-if="filter(resume.contacts).length > 0" class="contactContainer">
-					<main class="mainContact">
-						<ul class="contactArea">
-							<ol v-for="contact in filter(resume.contacts)">
-								<li class="contactList">
-									<svg class="icon" aria-hidden="true">
-										<use v-bind:xlink:href="`#icon-qq`"></use>
-									</svg>
-									<p v-html="contact.qq || '请填写QQ'"></p>
-								</li>
-								<li class="contactList">
-									<svg class="icon" aria-hidden="true">
-										<use v-bind:xlink:href="`#icon-wechat`"></use>
-									</svg>
-									<p v-html="contact.wechat || '请填写微信'"></p>
-								</li>
-								<li class="contactList">
-									<svg class="icon" aria-hidden="true">
-										<use v-bind:xlink:href="`#icon-phone1`"></use>
-									</svg>
-									<p v-html="contact.phone || '请填写手机号'"></p>
-								</li>
-								<li class="contactList">
-									<svg class="icon" aria-hidden="true">
-										<use v-bind:xlink:href="`#icon-email`"></use>
-									</svg>
-									<p v-html="contact.email || '请填写邮箱'"></p>
-								</li>
-								<li class="contactList">
-									<svg class="icon" aria-hidden="true">
-										<use v-bind:xlink:href="`#icon-github`"></use>
-									</svg>
-									<p v-html="contact.github || '请填写GitHub地址'"></p>
-								</li>
-							</ol>
-						</ul>
-					</main>
-				</section>
-			</div>
-			<footer class="footer">
-				<abilityProcess v-bind:items="resume.skills"/>
-			</footer>
-		</main>
-		<main class="resumeDiscription">
-			<header class="header1">
-				<h1>这里是头</h1>
-			</header>
-			<div class="main1">
-				<section class="ID-completion">
-					<ul>
-						<li>
-							<p>姓名</p>
-							<p>性别</p>
-							<p>城市</p>
-							<p>出生年月</p>
-							<p>求职意向</p>
-							<p>年龄</p>
-							<p>学历</p>
-						</li>
-						<li>
-							<span>{{resume.profile.name}}</span>
-							<span>{{resume.profile.gender}}</span>
-							<span>{{resume.profile.city}}</span>
-							<span>{{resume.profile.birth}}</span>
-							<span>{{resume.profile.wanted}}</span>
-							<span>{{resume.profile.age}}</span>
-							<span>{{resume.profile.degree}}</span>
-						</li>
-					</ul>
-				</section>
-				<div class="history">
-					<section class="studyHistory" v-if="filter(resume.studyHistory).length > 0">
-						<ul>
-							<li v-for="study in filter(resume.studyHistory)">
-								<h2>{{study.duration}}</h2>
-								<p>{{study.school}} {{study.degree}}</p>
-							</li>
-						</ul>
-					</section>
-					<section class="jobExperience" v-if="filter(resume.jobExperience).length > 0">
-						<ul>
-							<li v-for="job in filter(resume.jobExperience)">
-								<h2>{{job.duration}}</h2>
-								<p>{{job.company}} {{job.content}}</p>
-							</li>
-						</ul>
-					</section>
-				</div>
-			</div>
-			<footer class="onlineMode">
-				<a :href="resume.profile.onlineResume">ONLINE RESUME</a>
-			</footer>
-			<main class="main2">
-				<section class="projectDiscription" v-if="filter(resume.projects).length > 0">
-					<ul>
-						<li v-for="project in filter(resume.projects)" class="projectContent">
-							<span>
-								<h3>{{project.name}}</h3>
-								<h3 class="project-link">
-									<a :href="project.projectPreview">ViewDemo</a>
-									<a :href="project.projectCode">ViewCode</a>
-								</h3>
-							</span>
-							<p>{{project.content}}</p>
-						</li>
-					</ul>
-				</section>
-			</main>
-			<footer class="footerEnd"></footer>
-		</main>
-	</div>
+  <div id="preview">
+    <main class="idDiscription">
+      <div class="cover">
+        <h2 class="emailMe">ex.arc.zhang@gmail.com</h2>
+        <section class="aboutMe">
+          <h1>{{resume.profile.name || '请填写姓名'}}</h1>
+          <span class="jobAndCity">
+            <p>{{resume.profile.city || '请填写城市'}}</p>
+            <p>{{resume.profile.birth || '请填写出生日期'}}</p>
+            <h2>{{resume.profile.wanted || '请填写求职意向'}}</h2>
+          </span>
+        </section>
+        <div class="buildDate">
+          <p>创建时间</p>
+          <p>{{buildDate}}</p>
+        </div>
+        <section v-if="filter(resume.contacts).length > 0" class="contactContainer">
+          <main class="mainContact">
+            <ul class="contactArea">
+              <ol v-for="contact in filter(resume.contacts)">
+                <li class="contactList">
+                  <svg class="icon" aria-hidden="true">
+                    <use v-bind:xlink:href="`#icon-qq`"></use>
+                  </svg>
+                  <p v-html="contact.qq || '请填写QQ'"></p>
+                </li>
+                <li class="contactList">
+                  <svg class="icon" aria-hidden="true">
+                    <use v-bind:xlink:href="`#icon-wechat`"></use>
+                  </svg>
+                  <p v-html="contact.wechat || '请填写微信'"></p>
+                </li>
+                <li class="contactList">
+                  <svg class="icon" aria-hidden="true">
+                    <use v-bind:xlink:href="`#icon-phone1`"></use>
+                  </svg>
+                  <p v-html="contact.phone || '请填写手机号'"></p>
+                </li>
+                <li class="contactList">
+                  <svg class="icon" aria-hidden="true">
+                    <use v-bind:xlink:href="`#icon-email`"></use>
+                  </svg>
+                  <p v-html="contact.email || '请填写邮箱'"></p>
+                </li>
+                <li class="contactList">
+                  <svg class="icon" aria-hidden="true">
+                    <use v-bind:xlink:href="`#icon-github`"></use>
+                  </svg>
+                  <p v-html="contact.github || '请填写GitHub地址'"></p>
+                </li>
+              </ol>
+            </ul>
+          </main>
+        </section>
+      </div>
+      <footer class="footer">
+        <abilityProcess v-bind:items="resume.skills"/>
+      </footer>
+    </main>
+    <main class="resumeDiscription">
+      <header class="header1">
+        <h1>这里是头</h1>
+      </header>
+      <div class="main1">
+        <section class="ID-completion">
+          <ul>
+            <li>
+              <p>姓名</p>
+              <p>性别</p>
+              <p>城市</p>
+              <p>出生年月</p>
+              <p>求职意向</p>
+              <p>年龄</p>
+              <p>学历</p>
+            </li>
+            <li>
+              <span>{{resume.profile.name}}</span>
+              <span>{{resume.profile.gender}}</span>
+              <span>{{resume.profile.city}}</span>
+              <span>{{resume.profile.birth}}</span>
+              <span>{{resume.profile.wanted}}</span>
+              <span>{{resume.profile.age}}</span>
+              <span>{{resume.profile.degree}}</span>
+            </li>
+          </ul>
+        </section>
+        <div class="history">
+          <section class="studyHistory" v-if="filter(resume.studyHistory).length > 0">
+            <ul>
+              <li v-for="study in filter(resume.studyHistory)">
+                <h2>{{study.duration}}</h2>
+                <p>{{study.school}} {{study.degree}}</p>
+              </li>
+            </ul>
+          </section>
+          <section class="jobExperience" v-if="filter(resume.jobExperience).length > 0">
+            <ul>
+              <li v-for="job in filter(resume.jobExperience)">
+                <h2>{{job.duration}}</h2>
+                <p>{{job.company}} {{job.content}}</p>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </div>
+      <footer class="onlineMode">
+        <a :href="resume.profile.onlineResume">ONLINE RESUME</a>
+      </footer>
+      <main class="main2">
+        <section class="projectDiscription" v-if="filter(resume.projects).length > 0">
+          <ul>
+            <li v-for="project in filter(resume.projects)" class="projectContent">
+              <span>
+                <h3>{{project.name}}</h3>
+                <h3 class="project-link">
+                  <a :href="project.projectPreview">ViewDemo</a>
+                  <a :href="project.projectCode">ViewCode</a>
+                </h3>
+              </span>
+              <p>{{project.content}}</p>
+            </li>
+          </ul>
+        </section>
+      </main>
+      <footer class="footerEnd"></footer>
+    </main>
+  </div>
 </template>
 
 
@@ -295,7 +295,7 @@ $designWidth: 1920;
 		}
 	}
 	.footer {
-		padding: px(30) px(50) px(20) px(50);
+		padding: px(30) px(20) px(20) px(50);
 		flex: 1;
 	}
 }

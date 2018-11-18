@@ -1,22 +1,22 @@
 <template>
-	<section class="skills">
-		<ul class="skillList">
-			<li v-for="item in items" class="skillArea">
-				<div class="header">
-					<el-progress
-						:percentage="toNumber(item.abilityProcess)"
-						:width="processWidth()"
-						type="circle"
-						color="#f56c6ca4"
-					></el-progress>
-				</div>
-				<main class="content">
-					<span>{{item.abilityName}}</span>
-					<p>{{item.abilityDiscription}}</p>
-				</main>
-			</li>
-		</ul>
-	</section>
+  <section class="skills">
+    <ul class="skillList">
+      <li v-for="item in items" class="skillArea">
+        <div class="header">
+          <el-progress
+            :percentage="toNumber(item.abilityProcess)"
+            :width="processWidth()"
+            type="circle"
+            color="#f56c6ca4"
+          ></el-progress>
+        </div>
+        <main class="content">
+          <span>{{item.abilityName}}</span>
+          <p>{{item.abilityDiscription}}</p>
+        </main>
+      </li>
+    </ul>
+  </section>
 </template>
 
 <script>
@@ -46,11 +46,12 @@ $designWidth: 1920;
 .skills {
 	.skillList {
 		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
+		flex-wrap: wrap;
+		justify-content: space-between;
 		align-items: flex-start;
 		.skillArea {
 			display: flex;
+			width: 48%;
 			justify-content: center;
 			align-items: flex-start;
 			border-left: 2px solid rgba(245, 108, 108, 0.643);
